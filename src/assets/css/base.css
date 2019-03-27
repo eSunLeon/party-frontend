@@ -1,4 +1,4 @@
-*{
+* {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
@@ -7,13 +7,11 @@ html {
   width: 100%;
   height: 100%;
 }
-
-
-body{
+body {
   width: 100%;
   height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  font-family: Helvetica Neue,Helvetica,PingFang SC,Hiragino Sans GB,Microsoft YaHei,SimSun,sans-serif;
+  font-family: Helvetica Neue, Helvetica, PingFang SC, Hiragino Sans GB, Microsoft YaHei, SimSun, sans-serif;
 }
-
+/*# sourceMappingURL=base.css.map */
