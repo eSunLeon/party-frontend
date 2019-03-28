@@ -1,0 +1,49 @@
+<template>
+  <div class="nav">
+    <input type="text" placeholder="输入关键字搜索活动" class="search">
+    <div class="search-icon"></div>
+    <div class="add"></div>
+  </div>
+</template>
+
+<script>
+  export default {
+    name: 'navHeader'
+  }
+</script>
+
+<style lang="less" scoped>
+@r:50rem;
+.nav{
+  position: relative;
+  height: 92/@r;
+  background-color: #DF3031;
+  .search {
+    position: absolute;
+    top: 19/@r;
+    left: 40/@r;
+    height: 54/@r;
+    width: 570/@r;
+    font-size: 22/@r;
+    border-radius: 27/@r;
+    border: none;
+    padding-left: 79/@r;
+  }
+  .add{
+    position: absolute;
+    right: 40/@r;
+    top: 21/@r;
+    width: 51/@r;
+    height: 52/@r;
+    background-color: #000;
+  }
+  .search-icon {
+    position: absolute;
+    left: 61/@r;
+    top: 29/@r;
+    width: 36/@r;
+    height: 36/@r;
+    background-color: #000;
+  }
+}
+</style>
