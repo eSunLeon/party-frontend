@@ -1,30 +1,14 @@
 <template>
   <div>
-    <mt-swipe :auto="4000">
-      <mt-swipe-item>
-        <div>2</div>
-      </mt-swipe-item>
-      <mt-swipe-item>
-        <div>2</div>
-      </mt-swipe-item>
-      <mt-swipe-item>
-        <div>2</div>
-      </mt-swipe-item>
-    </mt-swipe>
-    <notice-bar left-icon="volume-o" text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。"/>
+    <van-notice-bar left-icon="volume-o" text="足协杯战线连续第2年上演广州德比战，上赛季半决赛上恒大以两回合5-3的总比分淘汰富力。"/>
     <!-- <input type="file" name="cover" accept="image/*" capture="camera" multiple/> -->
-    <input name="cover" type="file">
+    <!-- <input name="cover" type="file"> -->
   </div>
 </template>
 
 <script>
-import NoticeBar from 'vant/lib/notice-bar'
-import 'vant/lib/notice-bar/style'
 export default {
-  name: 'dashboard',
-  components: {
-    NoticeBar
-  },
+  name: 'index',
   methods: {
     test() {
       var ua = navigator.userAgent.toLowerCase()
