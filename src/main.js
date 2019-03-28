@@ -1,15 +1,14 @@
 import Vue from 'vue'
-import MintUI from 'mint-ui'
-import './assets/css/mint-ui.css'
+import Vant from 'vant'
+import '@/assets/css/index.css'
 import 'babel-polyfill'
 import App from './App'
 import router from './router'
 import store from './store'
-import '@/assets/css/base.css'
 import './permission' // permission control
 
 Vue.config.productionTip = false
-Vue.use(MintUI)
+Vue.use(Vant)
 new Vue({
   el: '#app',
   router,
