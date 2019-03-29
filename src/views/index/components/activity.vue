@@ -87,13 +87,13 @@
     overflow-y: hidden;
     overflow-x: auto;
     white-space:nowrap;
+    font-size: 0;
     &::-webkit-scrollbar {
       display: none;
     }
     .activity-item {
       display: inline-block;
       position: relative;
-      /*float: left;*/
       width: 350/@r;
       vertical-align: top;
     }
