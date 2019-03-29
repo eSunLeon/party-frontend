@@ -17,11 +17,11 @@
 .nav{
   position: relative;
   height: 92/@r;
+  padding-top: 19/@r;
+  padding-left: 40/@r;
   background-color: #DF3031;
   .search {
-    position: absolute;
-    top: 19/@r;
-    left: 40/@r;
+    display: block;
     height: 54/@r;
     width: 570/@r;
     font-size: 22/@r;
