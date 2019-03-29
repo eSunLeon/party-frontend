@@ -1,8 +1,8 @@
 <template>
   <div class="nav">
     <input type="text" placeholder="输入关键字搜索活动" class="search">
-    <div class="search-icon"></div>
-    <div class="add"></div>
+    <img src="./img/search.png" class="search-icon"/>
+    <img src="./img/add.png" class="add"/>
   </div>
 </template>
 
@@ -35,7 +35,7 @@
     top: 21/@r;
     width: 51/@r;
     height: 52/@r;
-    background-color: #000;
+    cursor: pointer;
   }
   .search-icon {
     position: absolute;
@@ -43,7 +43,6 @@
     top: 29/@r;
     width: 36/@r;
     height: 36/@r;
-    background-color: #000;
   }
 }
 </style>

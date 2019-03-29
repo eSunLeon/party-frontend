@@ -16,19 +16,19 @@ export const constantRouterMap = [
         path: '/',
         component: () => import('@/views/index/index'),
         name: 'index',
-        meta: { title: '首页', icon: 'icon-users' }
+        meta: { title: '首页', icon: 0 }
       },
       {
         path: '/group',
         component: () => import('@/views/group/group'),
         name: 'group',
-        meta: { title: '党群', icon: 'icon-users' }
+        meta: { title: '党群', icon: 1 }
       },
       {
         path: '/my',
         component: () => import('@/views/my/manage'),
         name: 'my',
-        meta: { title: '我的', icon: 'icon-users' }
+        meta: { title: '我的', icon: 2 }
       }
     ]
   },

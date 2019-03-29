@@ -1,9 +1,16 @@
 <template>
-  <div>Group</div>
+  <div>
+    <top></top>
+  </div>
 </template>
 <script>
-export default {
-  name: 'group'
-}
+  import top from './components/top'
+
+  export default {
+    name: 'group',
+    components: {
+      top
+    }
+  }
 </script>
 

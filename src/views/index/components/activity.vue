@@ -5,7 +5,7 @@
       <span class="more">查看更多</span>
     </div>
     <div class="activity-list">
-      <div class="activity-item">
+      <router-link to="/my" class="activity-item">
         <div class="img">
 
         </div>
@@ -18,8 +18,8 @@
         <div class="activity-time">
           2019-04-12
         </div>
-      </div>
-      <div class="activity-item">
+      </router-link>
+      <router-link to="/my" class="activity-item">
         <div class="img">
 
         </div>
@@ -32,8 +32,8 @@
         <div class="activity-time">
           2019-04-12
         </div>
-      </div>
-      <div class="activity-item">
+      </router-link>
+      <router-link to="/my" class="activity-item">
         <div class="img">
 
         </div>
@@ -46,7 +46,7 @@
         <div class="activity-time">
           2019-04-12
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -64,6 +64,7 @@
     background-color: #fff;
     padding: 0 20/@r;
     margin-bottom: 19/@r;
+    box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
     .title {
       color: #1a1a1a;
       padding-top: 30/@r;
@@ -96,6 +97,9 @@
       position: relative;
       width: 350/@r;
       vertical-align: top;
+      &+.activity-item{
+        margin-left: 10/@r;
+      }
     }
     .img {
       height: 210/@r;
@@ -104,7 +108,7 @@
       border-radius: 8/@r;
     }
     .activity-name {
-      padding: 20/@r 0;
+      padding: 20/@r 0 15/@r;
       font-size: 28/@r;
       color: #1A1A1A;
     }
@@ -113,12 +117,19 @@
       font-size: 22/@r;
       position: relative;
       padding-left: 33/@r;
+      padding-top: 5/@r;
+      padding-bottom: 5/@r;
     }
     .activity-address {
       overflow:hidden;
       width: 294/@r;
-      padding-bottom: 10/@r;
       text-overflow : ellipsis;
+      background: url('./img/location.png') left center no-repeat;
+      background-size: 20/@r 25/@r;
+    }
+    .activity-time {
+      background: url('./img/time.png') left center no-repeat;
+      background-size: 20/@r;
     }
   }
 </style>
