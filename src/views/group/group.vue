@@ -1,15 +1,17 @@
 <template>
-  <div>
+  <div class="container">
     <top></top>
+    <tab></tab>
   </div>
 </template>
 <script>
   import top from './components/top'
-
+  import tab from './components/tab'
   export default {
     name: 'group',
     components: {
-      top
+      top,
+      tab
     }
   }
 </script>

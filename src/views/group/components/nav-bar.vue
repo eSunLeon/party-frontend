@@ -32,7 +32,7 @@
     display: -webkit-box;
     display: -webkit-flex;
     display: flex;
-    padding: 47/@r 0 42/@r;
+    padding: 27/@r 0 42/@r;
     .tab-item {
       -webkit-box-flex: 1;
       -webkit-flex: 1;

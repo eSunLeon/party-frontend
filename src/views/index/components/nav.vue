@@ -2,7 +2,7 @@
   <div class="nav">
     <input type="text" placeholder="输入关键字搜索活动" class="search">
     <img src="./img/search.png" class="search-icon"/>
-    <img src="./img/add.png" class="add"/>
+    <img src="./img/add.png" class="add" @click="$router.push('/create-activity')"/>
   </div>
 </template>
 

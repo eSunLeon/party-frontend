@@ -2,7 +2,7 @@
     <router-link to="/notice" class="notice">
       <img src="./img/sound.png" class="left"/>
       【党建】职教中心党总支开展主题党日学习活动!
-      <img src="./img/more.png" class="right"/>
+      <img src="../../../assets/img/more.png" class="right"/>
     </router-link>
 </template>
 
@@ -31,7 +31,9 @@
     .right {
       position: absolute;
       right: 40/@r;
-      bottom: 25/@r;
+      top: 50%;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
       width: 13/@r;
     }
 

@@ -47,6 +47,13 @@
         mySelectedImg
       }
     },
+    watch: {
+      '$route.meta'(val) {
+        if (!isNaN(val.icon)) {
+          this.selected = val.icon
+        }
+      }
+    },
     created() {
       this.selected = this.$route.meta.icon
     }

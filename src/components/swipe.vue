@@ -2,16 +2,16 @@
   <div class="swipe">
     <van-swipe :autoplay="3000">
       <van-swipe-item>
-        <div class="swipe-item">1</div>
+        <img src="../assets/img/banner.png" class="swipe-item">
       </van-swipe-item>
       <van-swipe-item>
-        <div class="swipe-item">1</div>
+        <img src="../assets/img/banner.png" class="swipe-item">
       </van-swipe-item>
       <van-swipe-item>
-        <div class="swipe-item">1</div>
+        <img src="../assets/img/banner.png" class="swipe-item">
       </van-swipe-item>
       <van-swipe-item>
-        <div class="swipe-item">1</div>
+        <img src="../assets/img/banner.png" class="swipe-item">
       </van-swipe-item>
     </van-swipe>
   </div>
@@ -28,9 +28,11 @@
   .swipe {
     padding: 16/@r 20/@r 20/@r 20/@r;
     .van-swipe {
-      height: 375/@r;
-      background-color: #000;
       border-radius: 16/@r;
+    }
+    .swipe-item {
+      width: 100%;
+      height: 375/@r;
     }
   }
 </style>

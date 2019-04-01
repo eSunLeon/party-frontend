@@ -2627,6 +2627,7 @@ textarea {
   transform: translateX(-50%);
 }
 .van-swipe__indicators--vertical {
+  position: absolute;
   left: 10px;
   top: 50%;
   bottom: auto;
@@ -4234,4 +4235,20 @@ textarea {
   display: -webkit-box;
   display: -webkit-flex;
   display: flex;
+}
+.container {
+  padding-bottom: 2.4rem;
+}
+#add_activity {
+  padding-bottom: 0.6rem;
+}
+#add_activity .van-field__label {
+  width: 3.32rem;
+  max-width: 3.32rem;
+  font: 26/50rem;
+  line-height: 0.76rem;
+}
+#add_activity .van-field__label span {
+  position: relative;
+  top: -0.08rem;
 }

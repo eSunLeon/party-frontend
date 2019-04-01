@@ -1,11 +1,14 @@
 <template>
     <div class="tab">
       <van-row>
-        <van-col span="12">
-          <div class="tab-tittle" :class="{'active': active === 1}" @click="active =1">社区资讯</div>
+        <van-col span="8">
+          <div class="tab-tittle" :class="{'active': active === 1}" @click="active =1">党建活动</div>
         </van-col>
-        <van-col span="12">
-          <div class="tab-tittle" :class="{'active': active === 2}" @click="active =2">推荐活动</div>
+        <van-col span="8">
+          <div class="tab-tittle" :class="{'active': active === 2}" @click="active =2">活动动态</div>
+        </van-col>
+        <van-col span="8">
+          <div class="tab-tittle" :class="{'active': active === 3}" @click="active =3">党建资讯</div>
         </van-col>
       </van-row>
       <div class="list">
@@ -16,6 +19,9 @@
             领凝聚前进力量
             <div class="bottom">
               2019-03-11
+              <div class="number">
+                369
+              </div>
             </div>
           </div>
         </div>
@@ -26,6 +32,9 @@
             领凝聚前进力量
             <div class="bottom">
               2019-03-11
+              <div class="number">
+                1000
+              </div>
             </div>
           </div>
         </div>
@@ -63,38 +72,44 @@
       border-bottom-color: #DF3031;
     }
   }
-.list {
-  padding: 9/@r 20/@r 2px;
-}
-.item {
-  padding: 30/@r 0;
-  padding-left: 278/@r;
-  position: relative;
-
-  &+.item {
-    border-top: 1px solid #E6E6E6;
+  .list {
+    padding: 9/@r 20/@r 2px;
   }
-}
-.img {
-  width: 261/@r;
-  height: 158/@r;
-  position: absolute;
-  top: 30/@r;
-  left: -1/@r;
-}
-.detail {
-  padding-top: 14/@r;
-  height: 159/@r;
-  font-size: 26/@r;
-  color: #1a1a1a;
-  position: relative;
-  line-height: 36/@r;
-}
-.bottom {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  color: #666;
-  font-size: 22/@r;
-}
+  .item {
+    padding: 30/@r 0;
+    padding-left: 238/@r;
+    position: relative;
+    border-bottom: 1px solid #E6E6E6;
+  }
+  .img {
+    width: 220/@r;
+    height: 158/@r;
+    position: absolute;
+    top: 30/@r;
+    left: -1/@r;
+  }
+  .detail {
+    padding-top: 14/@r;
+    height: 159/@r;
+    font-size: 26/@r;
+    color: #1a1a1a;
+    position: relative;
+    line-height: 36/@r;
+  }
+  .bottom {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    color: #666;
+    font-size: 22/@r;
+  }
+  .number {
+    position: absolute;
+    left: 364/@r;
+    bottom:0;
+    padding-left: 52/@r;
+    background: url("../../../assets/img/view.png") left top no-repeat;
+    background-size: 32/@r 20/@r;
+  }
 </style>

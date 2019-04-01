@@ -45,6 +45,12 @@ export const constantRouterMap = [
     meta: { title: '活动', icon: 'icon-users' }
   },
   {
+    path: '/create-activity',
+    component: () => import('@/views/create-activity/create-activity'),
+    name: 'createActivity',
+    meta: { title: '活动', icon: 'icon-users' }
+  },
+  {
     path: '/notice',
     component: () => import('@/views/notice/notice'),
     name: 'notice',
@@ -57,22 +63,28 @@ export const constantRouterMap = [
     meta: { title: '公告列表', icon: 'icon-users' }
   },
   {
-    path: '/notice/activity/:id',
+    path: '/notice/activity',
     component: () => import('@/views/notice-detail/activity'),
     name: 'noticeActivity',
     meta: { title: '活动通知', icon: 'icon-users' }
   },
   {
-    path: '/notice/inner-party/:id',
+    path: '/notice/inner-party',
     component: () => import('@/views/notice-detail/inner-party'),
     name: 'innerParty',
     meta: { title: '党内通报', icon: 'icon-users' }
   },
   {
-    path: '/notice/public/:id',
+    path: '/notice/public',
     component: () => import('@/views/notice-detail/public-notice'),
     name: 'publicNotice',
     meta: { title: '公示公告', icon: 'icon-users' }
+  },
+  {
+    path: '/notice/public-detail',
+    component: () => import('@/views/notice-detail/public-detail'),
+    name: 'publicDetail',
+    meta: { title: '公示详情', icon: 'icon-users' }
   },
   {
     path: '/integral',
@@ -109,6 +121,18 @@ export const constantRouterMap = [
     component: () => import('@/views/setting/setting'),
     name: 'setting',
     meta: { title: '设置', icon: 'icon-users' }
+  },
+  {
+    path: '/about',
+    component: () => import('@/views/about/about'),
+    name: 'about',
+    meta: { title: '关于', icon: 'icon-users' }
+  },
+  {
+    path: '/profile',
+    component: () => import('@/views/profile/profile'),
+    name: 'profile',
+    meta: { title: '个人资料', icon: 'icon-users' }
   },
   {
     path: '/search',

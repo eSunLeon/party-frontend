@@ -8,7 +8,7 @@
 
 <script>
   import navBar from './nav-bar'
-  import swipe from './swipe'
+  import swipe from '@/components/swipe'
   import notice from './notice'
   export default {
     name: 'top',
@@ -24,6 +24,5 @@
 @r:50rem;
   .top {
     background-color: #fff;
-    padding-top: 20/@r;
   }
 </style>
