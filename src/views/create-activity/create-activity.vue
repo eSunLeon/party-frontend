@@ -6,11 +6,11 @@
         <input placeholder="请填写活动主题" type="text">
       </div>
       <div class="add-cover">
-        <!--<img src="" alt="">-->
+        <img :src="baseSrc" v-if="baseSrc">
         <div class="add">
           <img class="add-icon" src="./img/add.png">
           <div class="text">添加活动封面</div>
-          <input class="file" type="file">
+          <input class="file" type="file" @change="changeImg($event)"/>
         </div>
       </div>
     </div>
@@ -104,6 +104,7 @@ export default {
   },
   data() {
     return {
+      baseSrc: null,
       minStartDate: new Date(),
       startDate: new Date(),
       startShow: false,
@@ -139,6 +140,23 @@ export default {
     },
     selectConfirm(value) {
       console.log(value)
+    },
+    changeImg(e) {
+      var file = e.target.files[0]
+      if (!/image\/(png|jpg|jpeg|gif)$/i.test(file.type)) {
+        this.baseSrc = null
+        return false
+      }
+      var reader = new FileReader()
+      if (file) {
+        reader.readAsDataURL(file)
+      } else {
+        this.baseSrc = null
+      }
+      var _this = this
+      reader.onloadend = function() {
+        _this.baseSrc = reader.result
+      }
     }
   }
 }
