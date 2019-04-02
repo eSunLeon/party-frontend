@@ -2,10 +2,10 @@
     <div class="tab">
       <van-row>
         <van-col span="12">
-          <div class="tab-tittle" :class="{'active': active === 1}" @click="active =1">社区资讯</div>
+          <div class="tab-title" :class="{'active': active === 1}" @click="active =1">社区资讯</div>
         </van-col>
         <van-col span="12">
-          <div class="tab-tittle" :class="{'active': active === 2}" @click="active =2">推荐活动</div>
+          <div class="tab-title" :class="{'active': active === 2}" @click="active =2">推荐活动</div>
         </van-col>
       </van-row>
       <div class="list">
@@ -50,7 +50,7 @@
   background-color: #fff;
   box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
 }
-  .tab-tittle {
+  .tab-title {
     padding-top: 22/@r;
     padding-bottom: 20/@r;
     text-align: center;
@@ -70,7 +70,6 @@
   padding: 30/@r 0;
   padding-left: 278/@r;
   position: relative;
-
   &+.item {
     border-top: 1px solid #E6E6E6;
   }

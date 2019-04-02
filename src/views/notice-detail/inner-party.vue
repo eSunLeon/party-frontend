@@ -4,6 +4,7 @@
       <div class="list">
         <div class="item">
           <div class="title">
+            <img src="../../assets/img/gonggao.png" class="title-icon">
             【会议】党建使用培训会议
           </div>
           <div class="time">
@@ -18,6 +19,7 @@
         </div>
         <div class="item">
           <div class="title">
+            <img src="../../assets/img/gonggao.png" class="title-icon">
             【会议】党建使用培训会议
           </div>
           <div class="time">
@@ -57,11 +59,16 @@
     }
   }
   .title {
+    position: relative;
     font-size: 34/@r;
     color: #2E2E2E;
-    background: url("../../assets/img/gonggao.png") left top no-repeat;
-    background-size: 30/@r 35/@r;
     margin-bottom: 14/@r;
+    .title-icon {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 30/@r;
+    }
   }
   .time {
     font-size: 26/@r;

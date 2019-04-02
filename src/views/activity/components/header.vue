@@ -1,10 +1,10 @@
 <template>
     <div class="header">
-      我的积分
+      党建活动
       <div class="back" @click="$router.back()">
         <img src="../../../assets/img/back.png" class="icon">
       </div>
-      <router-link to="/integral-detail" class="router">积分明细</router-link>
+      <img src="../../../assets/img/add.png" class="add" @click="$router.push('/create-activity')"/>
     </div>
 </template>
 
@@ -35,16 +35,14 @@
     padding: 33/@r 20/@r 0;
     .icon {
       width: 26/@r;
+      display: block;
     }
   }
-  .router {
+  .add{
     position: absolute;
-    top: 0;
-    right: 0;
-    color: #fff;
-    font-size: 26/@r;
-    padding-top: 36/@r;
-    padding-right: 19/@r;
-    letter-spacing: 1/@r;
+    right: 20/@r;
+    top: 20/@r;
+    width: 52/@r;
+    cursor: pointer;
   }
 </style>

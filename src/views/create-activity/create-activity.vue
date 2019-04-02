@@ -6,21 +6,22 @@
         <input placeholder="请填写活动主题" type="text">
       </div>
       <div class="add-cover">
-        <img :src="baseSrc" v-if="baseSrc">
-        <div class="add">
-          <img class="add-icon" src="./img/add.png">
-          <div class="text">添加活动封面</div>
+        <div class="add" :class="{'add-no-border': baseSrc}">
+          <img :src="baseSrc" v-if="baseSrc" class="base-src">
+          <img class="add-icon" src="./img/add.png" v-if="!baseSrc">
+          <div class="text" v-if="!baseSrc">添加活动封面</div>
           <input class="file" type="file" @change="changeImg($event)"/>
         </div>
       </div>
     </div>
     <div class="list">
-      <div class="item start">
+      <div class="item start" @click="startShow = true">
+        <!--<img src="../" alt="">-->
         活动时间
         <div class="start-time">2019-04-06</div>
         <img class="icon" src="../../assets/img/more.png">
       </div>
-      <div class="item end">
+      <div class="item end" @click="endShow = true">
         报名截止时间
         <div class="end-time">2019-04-06</div>
         <img class="icon" src="../../assets/img/more.png">
@@ -44,7 +45,7 @@
           <input class="tel-input" placeholder="请输入手机号码" type="number">
         </div>
       </div>
-      <div class="item select">
+      <div class="item select" @click="selectShow = true">
         活动类型：请选择活动类型
         <img class="icon-bottom" src="./img/more_bottom.png">
       </div>
@@ -119,7 +120,7 @@ export default {
       message: null
     }
   },
-  omputed: {
+  computed: {
     minEndDate() {
       return this.startDate
     }
@@ -197,6 +198,13 @@ export default {
   border-radius: 10 / @r;
   padding-top: 46 / @r;
   overflow: hidden;
+  .base-src {
+    position: absolute;
+    top: 0;
+    left:0;
+    width: 100%;
+    height: 100%;
+  }
   .add-icon {
     width: 26 / @r;
   }
@@ -213,6 +221,9 @@ export default {
     left: 0;
     opacity: 0;
   }
+}
+.add-no-border{
+  border: none;
 }
 .list {
   padding: 0 20 / @r;

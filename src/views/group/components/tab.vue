@@ -2,13 +2,13 @@
     <div class="tab">
       <van-row>
         <van-col span="8">
-          <div class="tab-tittle" :class="{'active': active === 1}" @click="active =1">党建活动</div>
+          <div class="tab-title" :class="{'active': active === 1}" @click="active =1">党建活动</div>
         </van-col>
         <van-col span="8">
-          <div class="tab-tittle" :class="{'active': active === 2}" @click="active =2">活动动态</div>
+          <div class="tab-title" :class="{'active': active === 2}" @click="active =2">活动动态</div>
         </van-col>
         <van-col span="8">
-          <div class="tab-tittle" :class="{'active': active === 3}" @click="active =3">党建资讯</div>
+          <div class="tab-title" :class="{'active': active === 3}" @click="active =3">党建资讯</div>
         </van-col>
       </van-row>
       <div class="list">
@@ -20,6 +20,7 @@
             <div class="bottom">
               2019-03-11
               <div class="number">
+                <img class="view-icon" src="../../../assets/img/view.png"/>
                 369
               </div>
             </div>
@@ -33,6 +34,7 @@
             <div class="bottom">
               2019-03-11
               <div class="number">
+                <img class="view-icon" src="../../../assets/img/view.png"/>
                 1000
               </div>
             </div>
@@ -59,7 +61,7 @@
   background-color: #fff;
   box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
 }
-  .tab-tittle {
+  .tab-title {
     padding-top: 22/@r;
     padding-bottom: 20/@r;
     text-align: center;
@@ -109,7 +111,5 @@
     left: 364/@r;
     bottom:0;
     padding-left: 52/@r;
-    background: url("../../../assets/img/view.png") left top no-repeat;
-    background-size: 32/@r 20/@r;
   }
 </style>

@@ -2,10 +2,15 @@
   <div>
     <header-nav></header-nav>
     <div class="title">
-      十三届全国人大二次会议在京开幕
+      十九届中央第一巡视公布7个地区和
+      单位整改情况
     </div>
     <div class="time">
-      2019-03-05 14:18
+      发布时间：2019-03-29
+      <div class="view">
+        <img src="../../assets/img/view.png" class="view-icon"/>
+        22w
+      </div>
     </div>
     <div class="border"></div>
     <div class="content">
@@ -30,7 +35,7 @@
 <style lang="less" scoped>
   @r: 50rem;
   .title {
-    padding: 21/@r 26/@r 8/@r;
+    padding: 21/@r 26/@r 18/@r;
     color: #333;
     font-weight: bold;
     font-size: 44/@r;
@@ -39,10 +44,11 @@
   .time {
     color: #999;
     font-size: 26/@r;
-    padding-left: 29/@r;
+    padding-left: 20/@r;
+    position: relative;
   }
   .border{
-    margin: 40/@r 20/@r 0;
+    margin: 29/@r 20/@r 0;
     border-bottom: 1px solid transparent;
     -webkit-box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
     box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
@@ -52,5 +58,13 @@
     font-size:34/@r;
     line-height:54/@r;
     color: #505050;
+  }
+  .view {
+    position: absolute;
+    left: 604/@r;
+    top: 0;
+    font-size: 26/@r;
+    color: #999;
+    padding-left: 52/@r;
   }
 </style>

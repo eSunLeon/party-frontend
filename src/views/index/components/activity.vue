@@ -13,9 +13,11 @@
           湖畔郊游烧烤钓鱼活动
         </div>
         <div class="activity-address">
+          <img src="./img/location.png" class="address-icon"/>
           深圳龙岗区大鹏新城五零深圳龙岗区大鹏新城五零
         </div>
         <div class="activity-time">
+          <img src="./img/time.png" class="time-icon"/>
           2019-04-12
         </div>
       </router-link>
@@ -27,9 +29,11 @@
           湖畔郊游烧烤钓鱼活动
         </div>
         <div class="activity-address">
+          <img src="./img/location.png" class="address-icon"/>
           深圳龙岗区大鹏新城五零
         </div>
         <div class="activity-time">
+          <img src="./img/time.png" class="time-icon"/>
           2019-04-12
         </div>
       </router-link>
@@ -41,9 +45,11 @@
           湖畔郊游烧烤钓鱼活动
         </div>
         <div class="activity-address">
+          <img src="./img/location.png" class="address-icon"/>
           深圳龙岗区大鹏新城五零
         </div>
         <div class="activity-time">
+          <img src="./img/time.png" class="time-icon"/>
           2019-04-12
         </div>
       </router-link>
@@ -124,12 +130,24 @@
       overflow:hidden;
       width: 294/@r;
       text-overflow : ellipsis;
-      background: url('./img/location.png') left center no-repeat;
-      background-size: 20/@r 25/@r;
+      .address-icon {
+        position: absolute;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0;
+        width:20/@r ;
+      }
     }
     .activity-time {
-      background: url('./img/time.png') left center no-repeat;
-      background-size: 20/@r;
+      .time-icon {
+        position: absolute;
+        -webkit-transform: translateY(-50%);
+        transform: translateY(-50%);
+        top: 50%;
+        left: 0;
+        width: 20/@r;
+      }
     }
   }
 </style>

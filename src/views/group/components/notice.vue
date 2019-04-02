@@ -22,6 +22,7 @@
     font-size: 26/@r;
     white-space:nowrap;
     overflow: hidden;
+    margin-bottom: 18/@r;
     .left {
       position: absolute;
       left: 40/@r;

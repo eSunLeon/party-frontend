@@ -4,6 +4,7 @@
       <div class="list">
         <router-link to="/notice/public-detail" class="item">
           <div class="title">
+            <img src="../../assets/img/gonggao.png" class="title-icon">
             党内十三届全国人大二次会议在京开幕
           </div>
           <div class="time">
@@ -37,11 +38,16 @@
       padding-left: 46/@r;
     }
     .title {
-      background: url("../../assets/img/gonggao.png") left top no-repeat;
-      background-size: 30/@r 35/@r;
+      position: relative;
       font-size: 34/@r;
       color: #2e2e2e;
       padding-bottom: 29/@r;
+      .title-icon {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 30/@r;
+      }
     }
     .time {
       font-size: 26/@r;

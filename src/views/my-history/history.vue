@@ -7,10 +7,13 @@
           小支部大作为 党建引领凝聚前进力量引
           领凝聚前进力量
         </div>
-        <img src="../../assets/img/banner.png">
+        <img src="../../assets/img/banner.png" class="banner">
         <div class="time">
           2019-03-11
-          <div class="number">324</div>
+          <div class="number">
+            <img src="../../assets/img/view.png" class="view-icon">
+            324
+          </div>
         </div>
       </div>
       <div class="item">
@@ -18,10 +21,13 @@
           小支部大作为 党建引领凝聚前进力量引
           领凝聚前进力量
         </div>
-        <img src="../../assets/img/banner.png">
+        <img src="../../assets/img/banner.png" class="banner">
         <div class="time">
           2019-03-11
-          <div class="number">3243</div>
+          <div class="number">
+            <img src="../../assets/img/view.png" class="view-icon">
+            3243
+          </div>
         </div>
       </div>
     </div>
@@ -48,7 +54,7 @@
     border-bottom: 1/@r solid #E6E6E6;
     position: relative;
     padding-top: 44/@r;
-    img {
+    .banner {
       position: absolute;
       top: 30/@r;
       right: 0;
@@ -73,8 +79,6 @@
       left: 364/@r;
       top: 0;
       padding-left: 52/@r;
-      background: url("../../assets/img/view.png") left center no-repeat;
-      background-size: 32/@r 20/@r;
     }
   }
 </style>

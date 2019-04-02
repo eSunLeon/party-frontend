@@ -2,7 +2,7 @@
   <div class="nav">
     <input type="text" placeholder="输入关键字搜索活动" class="search">
     <img src="./img/search.png" class="search-icon"/>
-    <img src="./img/add.png" class="add" @click="$router.push('/create-activity')"/>
+    <img src="../../../assets/img/add.png" class="add" @click="$router.push('/create-activity')"/>
   </div>
 </template>
 
@@ -33,8 +33,7 @@
     position: absolute;
     right: 40/@r;
     top: 21/@r;
-    width: 51/@r;
-    height: 52/@r;
+    width: 52/@r;
     cursor: pointer;
   }
   .search-icon {
@@ -42,7 +41,6 @@
     left: 61/@r;
     top: 29/@r;
     width: 36/@r;
-    height: 36/@r;
   }
 }
 </style>

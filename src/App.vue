@@ -1,11 +1,15 @@
 <template>
-  <div id="app">
+  <div id="app" :style="{'background-color': backgroundColor}">
     <router-view></router-view>
   </div>
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default{
-    name: 'App'
+    name: 'App',
+    computed: {
+      ...mapGetters(['backgroundColor'])
+    }
   }
 </script>
