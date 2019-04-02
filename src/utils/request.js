@@ -1,28 +1,24 @@
 import axios from 'axios'
-import { Message } from 'element-ui'
+import { Notify } from 'vant'
+
 import store from '@/store'
 // import { getToken } from '@/utils/auth'
 
-// create an axios instance
 const service = axios.create({
-  baseURL: process.env.BASE_API, // api的base_url
-  timeout: 10000 // request timeout
+  baseURL: process.env.BASE_API,
+  timeout: 20000
 })
 
-// request interceptor
 service.interceptors.request.use(config => {
-  // Do something before request is sent
+  console.log(config)
   if (store.getters.token) {
-    // config.headers['X-Token'] = getToken() // 让每个请求携带token-- ['X-Token']为自定义key 请根据实际情况自行修改
+    // config.headers['X-Token'] = getToken()
   }
   return config
 }, error => {
-  // Do something with request error
-  console.log(error) // for debug
   Promise.reject(error)
 })
 
-// respone interceptor
 service.interceptors.response.use(
   response => {
     const res = response.data
@@ -31,10 +27,10 @@ service.interceptors.response.use(
     }
   },
   error => {
-    Message({
-      message: error.message,
-      type: 'error',
-      duration: 5 * 1000
+    Notify({
+      message: '通知内容',
+      duration: 1000,
+      background: '#1989fa'
     })
     return Promise.reject(error)
   })
