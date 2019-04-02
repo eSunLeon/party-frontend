@@ -30,6 +30,18 @@ export function parseTime(time, cFormat) {
   })
   return time_str
 }
+export function formatCustomDate(time, option) {
+  const y = time.getFullYear()
+  const m = time.getMonth() + 1
+  const d = time.getDate()
+  function zero(val) {
+    if (val < 10) {
+      return '0' + val
+    }
+    return val
+  }
+  return y + option + zero(m) + option + zero(d)
+}
 
 export function formatTime(time, option) {
   time = +time * 1000
@@ -261,4 +273,3 @@ export function deepClone(source) {
 export function isExternal(path) {
   return /^(https?:|mailto:|tel:)/.test(path)
 }
-
