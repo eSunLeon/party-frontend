@@ -11,8 +11,8 @@
       <div class="form-item input-small">
         <img src="./img/password.png" class="password-icon">
         <input type="text" placeholder="请输入验证码">
-        <!--<button class="disable-btn">已发送(28秒)</button>-->
-        <button class="active-btn">获取验证码</button>
+        <button v-if="!sendSign" class="disable-btn">已发送({{time}}秒)</button>
+        <button v-if="sendSign" class="active-btn" @click="getCode">获取验证码</button>
       </div>
     </div>
     <button class="login-btn">登录</button>
@@ -20,7 +20,27 @@
 </template>
 <script>
 export default {
-  name: 'login'
+  name: 'login',
+  data() {
+    return {
+      time: 60,
+      sendSign: true,
+      timer: null
+    }
+  },
+  methods: {
+    getCode() {
+      this.sendSign = false
+      this.timer = setInterval(() => {
+        this.time--
+        if (this.time === 0) {
+          this.timer = null
+          this.sendSign = true
+          this.time = 60
+        }
+      }, 1000)
+    }
+  }
 }
 </script>
 
