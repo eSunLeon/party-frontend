@@ -51,10 +51,16 @@ export const constantRouterMap = [
     meta: { title: '活动', bg: '#F0F0F0' }
   },
   {
+    path: '/join',
+    component: () => import('@/views/join/join'),
+    name: 'join',
+    meta: { title: '立即报名', bg: '#F0F0F0' }
+  },
+  {
     path: '/create-activity',
     component: () => import('@/views/create-activity/create-activity'),
     name: 'createActivity',
-    meta: { title: '活动', bg: '#F0F0F0' }
+    meta: { title: '创建活动', bg: '#F0F0F0' }
   },
   {
     path: '/notice',

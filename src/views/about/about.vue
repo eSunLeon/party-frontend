@@ -27,7 +27,6 @@
     line-height: 520/@r;
     text-align: center;
     background-color: #fff;
-    border-bottom: 1/@r solid #E8E8E8;
     img {
       width: 148/@r;
     }
@@ -40,6 +39,8 @@
     color: #1A1A1A;
     font-size: 26/@r;
     padding-left: 40/@r;
+    -webkit-box-shadow:0px -1/@r 0px 0px rgba(230,230,230,1);
+    box-shadow:0px -1/@r 0px 0px rgba(230,230,230,1);
     span {
       position: absolute;
       top: 33/@r;

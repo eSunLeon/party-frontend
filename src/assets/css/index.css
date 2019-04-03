@@ -2406,6 +2406,7 @@ textarea {
   left: 0;
   bottom: 0;
   position: fixed;
+  z-index: 15;
 }
 .van-tabbar-item {
   -webkit-box-flex: 1;
@@ -4251,16 +4252,6 @@ textarea {
 }
 #add_activity {
   padding-bottom: 0.6rem;
-}
-#add_activity .van-field__label {
-  width: 3.32rem;
-  max-width: 3.32rem;
-  font: 26/50rem;
-  line-height: 0.76rem;
-}
-#add_activity .van-field__label span {
-  position: relative;
-  top: -0.08rem;
 }
 .view-icon {
   position: absolute;

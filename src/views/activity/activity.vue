@@ -2,20 +2,20 @@
   <div>
     <header-nav></header-nav>
     <div class="list">
-      <div class="item">
+      <router-link to="/join" class="item">
         <img src="../../assets/img/banner.png"/>
         <div class="bottom">
           福大志愿义诊活动福大志愿义诊活动
           <button class="btn">立即参加</button>
         </div>
-      </div>
-      <div class="item">
+      </router-link>
+      <router-link to="/join" class="item">
         <img src="../../assets/img/banner.png"/>
         <div class="bottom">
           福大志愿义诊活动福大志愿义诊活动
           <button class="btn">立即参加</button>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
@@ -32,13 +32,17 @@
 <style lang="less" scoped>
 @r: 50rem;
   .list {
-    padding: 40/@r 20/@r 0;
+    padding: 40/@r 20/@r 20/@r;
     .item{
+      display: block;
       height: 400/@r;
-      margin-bottom: 30/@r;
+      -webkit-box-shadow:0px 3/@r 7/@r 0px rgba(4,0,0,0.12);
       box-shadow:0px 3/@r 7/@r 0px rgba(4,0,0,0.12);
       border-radius:8/@r;
       overflow: hidden;
+      &+.item {
+        margin-top: 30/@r;
+      }
       img {
         display: block;
         width:100%;
@@ -46,9 +50,7 @@
       }
       .bottom {
         position: relative;
-        height: 80/@r;
-        line-height: 80/@r;
-        padding-left: 20/@r;
+        padding:25/@r 20/@r;
         background-color: #fff;
         font-size: 30/@r;
         color: #2E2E2E;
@@ -60,9 +62,9 @@
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
         width:150/@r;
-        height:53/@r;
-        line-height: 1;
-        background:rgba(255,59,60,1);
+        padding-top: 13/@r;
+        padding-bottom: 13/@r;
+        background-color:rgba(255,59,60,1);
         -webkit-box-shadow:0px 2/@r 1px 0px rgba(192,16,17,0.8);
         box-shadow:0px 2/@r 1px 0px rgba(192,16,17,0.8);
         border-radius:6/@r;

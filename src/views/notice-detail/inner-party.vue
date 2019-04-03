@@ -52,7 +52,8 @@
   }
   .item {
     height: 223/@r;
-    border-bottom: 1/@r solid #E6E6E6;
+    -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
+    box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
     padding-top: 20/@r;
     >div {
       padding-left: 50/@r;

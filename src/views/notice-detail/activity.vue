@@ -72,8 +72,8 @@
     color: #666;
     font-size: 26/@r;
     padding: 18/@r 40/@r;
-    -webkit-box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
-    box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
+    -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
+    box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
     .address-icon {
       position: absolute;
       top: 50%;

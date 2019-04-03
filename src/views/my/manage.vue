@@ -47,7 +47,8 @@
     font-size: 30/@r;
     color: #1a1a1a;
     &+.item {
-      border-top: 1px solid #E8E8E8;
+      -webkit-box-shadow:0px -1/@r 0px 0px rgba(230,230,230,1);
+      box-shadow:0px -1/@r 0px 0px rgba(230,230,230,1);
     }
   }
   .more {

@@ -81,7 +81,8 @@
     padding: 30/@r 0;
     padding-left: 238/@r;
     position: relative;
-    border-bottom: 1px solid #E6E6E6;
+    -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
+    box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
   }
   .img {
     width: 220/@r;
@@ -109,7 +110,10 @@
   .number {
     position: absolute;
     left: 364/@r;
-    bottom:0;
+    bottom:-5/@r;
+    padding-bottom: 5/@r;
+    padding-top: 5/@r;
     padding-left: 52/@r;
+    z-index: 1;
   }
 </style>

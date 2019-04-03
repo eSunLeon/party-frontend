@@ -58,14 +58,13 @@
     overflow-x: auto;
     white-space: nowrap;
     background:rgba(240,240,240,1);
-    box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
+    -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
+    box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
     &::-webkit-scrollbar {
       display: none;
     }
     .tab {
-      height: 72/@r;
-      line-height: 72/@r;
-      padding: 0 20/@r;
+      padding: 22/@r 20/@r;
       color: #222;
     }
     .active {
@@ -85,7 +84,8 @@
     height: 219/@r;
     padding-top: 44/@r;
     padding-right: 257/@r;
-    box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
+    -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
+    box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
   }
   .src {
     position: absolute;

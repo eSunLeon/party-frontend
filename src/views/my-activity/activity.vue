@@ -42,7 +42,8 @@
     display: -webkit-flex;
     display: flex;
     height: 72/@r;
-    box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
+    -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
+    box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
   }
   .bar {
     -webkit-box-flex: 1;

@@ -32,7 +32,8 @@
   .item {
     display: block;
     height: 149/@r;
-    border-bottom: 1/@r solid #e6e6e6;
+    -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
+    box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
     padding-top: 30/@r;
     >div {
       padding-left: 46/@r;

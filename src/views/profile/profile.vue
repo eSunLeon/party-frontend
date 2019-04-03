@@ -83,7 +83,8 @@ export default {
   position: relative;
   height: 131 / @r;
   line-height: 130 / @r;
-  border-bottom: 1 / @r solid #e6e6e6;
+  -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
+  box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
 }
 .user-name {
   height: 90 / @r;
@@ -114,7 +115,8 @@ export default {
   height: 91 / @r;
   line-height: 90 / @r;
   position: relative;
-  border-bottom: 1 / @r solid #e6e6e6;
+  -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
+  box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
 }
 .user-name span,
 .item span {

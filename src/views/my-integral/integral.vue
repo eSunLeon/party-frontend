@@ -69,7 +69,8 @@
     height: 91/@r;
     line-height: 90/@r;
     background-color: #fff;
-    border-bottom: 1px solid #E8E8E8;
+    -webkit-box-shadow:0px -1/@r 0px 0px rgba(230,230,230,1);
+    box-shadow:0px -1/@r 0px 0px rgba(230,230,230,1);
     font-size: 26/@r;
     color: #1a1a1a;
     position: relative;

@@ -7,7 +7,7 @@
     <div class="activity-list">
       <router-link to="/my" class="activity-item">
         <div class="img">
-          
+
         </div>
         <div class="activity-name">
           湖畔郊游烧烤钓鱼活动
@@ -146,8 +146,8 @@
         transform: translateY(-50%);
         top: 50%;
         left: 0;
-        font-size: 20/@r;
-        color: #666;
+        font-size: 22/@r;
+        color: #808080;
       }
     }
   }

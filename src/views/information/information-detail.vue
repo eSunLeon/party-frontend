@@ -50,8 +50,8 @@
   .border{
     margin: 29/@r 20/@r 0;
     border-bottom: 1px solid transparent;
-    -webkit-box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
-    box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
+    -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
+    box-shadow:0px 1/@r 0px 0 rgba(230,230,230,1);
   }
   .content {
     padding: 20/@r 30/@r;
