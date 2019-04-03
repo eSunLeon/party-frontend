@@ -7,7 +7,7 @@
     <div class="activity-list">
       <router-link to="/my" class="activity-item">
         <div class="img">
-
+          
         </div>
         <div class="activity-name">
           湖畔郊游烧烤钓鱼活动
@@ -17,7 +17,7 @@
           深圳龙岗区大鹏新城五零深圳龙岗区大鹏新城五零
         </div>
         <div class="activity-time">
-          <img src="./img/time.png" class="time-icon"/>
+          <van-icon name="clock" />
           2019-04-12
         </div>
       </router-link>
@@ -33,7 +33,7 @@
           深圳龙岗区大鹏新城五零
         </div>
         <div class="activity-time">
-          <img src="./img/time.png" class="time-icon"/>
+          <van-icon name="clock" />
           2019-04-12
         </div>
       </router-link>
@@ -49,7 +49,7 @@
           深圳龙岗区大鹏新城五零
         </div>
         <div class="activity-time">
-          <img src="./img/time.png" class="time-icon"/>
+          <van-icon name="clock" />
           2019-04-12
         </div>
       </router-link>
@@ -136,17 +136,18 @@
         transform: translateY(-50%);
         top: 50%;
         left: 0;
-        width:20/@r ;
+        width:20/@r;
       }
     }
     .activity-time {
-      .time-icon {
+      .van-icon-clock {
         position: absolute;
         -webkit-transform: translateY(-50%);
         transform: translateY(-50%);
         top: 50%;
         left: 0;
-        width: 20/@r;
+        font-size: 20/@r;
+        color: #666;
       }
     }
   }
