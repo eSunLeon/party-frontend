@@ -69,7 +69,7 @@
     position: relative;
     font-size: 32/@r;
     color: #1a1a1a;
-    padding-bottom: 23/@r;
+    padding-bottom: 20/@r;
     .time {
       position: absolute;
       right: 0;
@@ -79,6 +79,7 @@
     }
   }
   .item-text {
+    padding-top: 3/@r;
     width: 564/@r;
     font-size: 26/@r;
     height: 26/@r;
