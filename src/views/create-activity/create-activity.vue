@@ -49,16 +49,14 @@
         活动类型：请选择活动类型
         <img class="icon-bottom" src="./img/more_bottom.png">
       </div>
-      <van-cell-group>
-        <van-field
-          autosize
-          label="详细说明："
-          placeholder="请输入详细说明"
-          rows="4"
-          type="textarea"
-          v-model="message"
-        />
-      </van-cell-group>
+      <div class="describe">
+        <div class=label>
+          详细说明:
+        </div>
+        <div class="textarea">
+          <textarea v-model="message" rows="4" placeholder="请输入详细说明"></textarea>
+        </div>
+      </div>
       <button class="submit">确认发布</button>
     </div>
     <van-popup
@@ -229,13 +227,14 @@ export default {
   padding: 0 20 / @r;
 }
 .item {
-  height: 68 / @r;
-  line-height: 68 / @r;
+  padding-top: 20/@r;
+  padding-bottom: 20/@r;
+  line-height: 1;
   position: relative;
-  font-size: 28 / @r;
+  font-size: 28/@r;
   color: #666;
   background-color: #fff;
-  border-radius: 10 / @r;
+  border-radius: 10/@r;
   .icon {
     position: absolute;
     top: 50%;
@@ -278,6 +277,7 @@ export default {
   position: absolute;
   top: 50%;
   right: 52 / @r;
+  -webkit-transform: translateY(-50%);
   transform: translateY(-50%);
   font-size: 26 / @r;
   color: #0cd71a;
@@ -372,15 +372,37 @@ export default {
     width: 23 / @r;
   }
 }
-.van-cell-group {
-  padding: 22 / @r 15 / @r 16 / @r 20 / @r;
+.describe {
+  padding: 18 / @r 15 / @r 16 / @r 20 / @r;
   background-color: #fff;
   border-radius: 10 / @r;
   margin-bottom: 61 / @r;
-  .van-cell {
-    font-size: 28 / @r;
-    color: #666;
-    padding: 0;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  font-size: 28 / @r;
+  color: #666;
+  .label {
+    padding-top: 4/@r;
+    width: 166/@r;
+    max-width: 166/@r;
+    font-size: 26/@r;
+  }
+  .textarea {
+    -webkit-box-flex: 1;
+    -webkit-flex: 1;
+    flex: 1
+  }
+  .textarea textarea{
+  border: 0;
+  margin: 0;
+  line-height: 36/@r;
+  width: 100%;
+  resize: none;
+  display: block;
+  box-sizing: border-box;
+  background-color: transparent;
+  color: #212121;
   }
 }
 .submit {
