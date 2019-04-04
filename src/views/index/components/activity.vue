@@ -5,52 +5,34 @@
       <span class="more">查看更多</span>
     </div>
     <div class="activity-list">
-      <router-link to="/my" class="activity-item">
-        <div class="img">
-
-        </div>
-        <div class="activity-name">
-          湖畔郊游烧烤钓鱼活动
-        </div>
+      <router-link class="activity-item" to="/my">
+        <div class="img"></div>
+        <div class="activity-name">湖畔郊游烧烤钓鱼活动</div>
         <div class="activity-address">
-          <img src="./img/location.png" class="address-icon"/>
-          深圳龙岗区大鹏新城五零深圳龙岗区大鹏新城五零
+          <van-icon name="location"/>深圳龙岗区大鹏新城五零深圳龙岗区大鹏新城五零
         </div>
         <div class="activity-time">
-          <van-icon name="clock" />
-          2019-04-12
+          <van-icon name="clock"/>2019-04-12
         </div>
       </router-link>
-      <router-link to="/my" class="activity-item">
-        <div class="img">
-
-        </div>
-        <div class="activity-name">
-          湖畔郊游烧烤钓鱼活动
-        </div>
+      <router-link class="activity-item" to="/my">
+        <div class="img"></div>
+        <div class="activity-name">湖畔郊游烧烤钓鱼活动</div>
         <div class="activity-address">
-          <img src="./img/location.png" class="address-icon"/>
-          深圳龙岗区大鹏新城五零
+          <van-icon name="location"/>深圳龙岗区大鹏新城五零
         </div>
         <div class="activity-time">
-          <van-icon name="clock" />
-          2019-04-12
+          <van-icon name="clock"/>2019-04-12
         </div>
       </router-link>
-      <router-link to="/my" class="activity-item">
-        <div class="img">
-
-        </div>
-        <div class="activity-name">
-          湖畔郊游烧烤钓鱼活动
-        </div>
+      <router-link class="activity-item" to="/my">
+        <div class="img"></div>
+        <div class="activity-name">湖畔郊游烧烤钓鱼活动</div>
         <div class="activity-address">
-          <img src="./img/location.png" class="address-icon"/>
-          深圳龙岗区大鹏新城五零
+          <van-icon name="location"/>深圳龙岗区大鹏新城五零
         </div>
         <div class="activity-time">
-          <van-icon name="clock" />
-          2019-04-12
+          <van-icon name="clock"/>2019-04-12
         </div>
       </router-link>
     </div>
@@ -58,97 +40,96 @@
 </template>
 
 <script>
-  export default {
-    name: 'activity'
-  }
+export default {
+  name: 'activity'
+}
 </script>
 
 <style lang="less" scoped>
-  @r: 50rem;
-  .activity {
-    width: 100%;
-    background-color: #fff;
-    padding: 0 20/@r;
-    margin-bottom: 19/@r;
-    box-shadow:0px 1px 0px 0px rgba(230,230,230,1);
-    .title {
-      color: #1a1a1a;
-      padding-top: 30/@r;
-      font-weight: bold;
-      font-size: 26/@r;
-      position: relative;
+@r: 50rem;
+.activity {
+  width: 100%;
+  background-color: #fff;
+  padding: 0 20 / @r;
+  margin-bottom: 19 / @r;
+  box-shadow: 0px 1px 0px 0px rgba(230, 230, 230, 1);
+  .title {
+    color: #1a1a1a;
+    padding-top: 30 / @r;
+    font-weight: bold;
+    font-size: 26 / @r;
+    position: relative;
+  }
+}
+.more {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #808080;
+  font-size: 24 / @r;
+  font-weight: 500;
+}
+.activity-list {
+  padding-top: 20 / @r;
+  height: 376 / @r;
+  width: 100%;
+  overflow-y: hidden;
+  overflow-x: auto;
+  white-space: nowrap;
+  font-size: 0;
+  &::-webkit-scrollbar {
+    display: none;
+  }
+  .activity-item {
+    display: inline-block;
+    position: relative;
+    width: 350 / @r;
+    vertical-align: top;
+    & + .activity-item {
+      margin-left: 10 / @r;
     }
   }
-  .more {
-    position: absolute;
-    right: 0;
-    bottom: 0;
-    color: #808080;
-    font-size: 24/@r;
-    font-weight: 500;
+  .img {
+    height: 210 / @r;
+    background-color: #000;
+    overflow: hidden;
+    border-radius: 8 / @r;
   }
-  .activity-list {
-    padding-top: 20/@r;
-    height: 376/@r;
-    width: 100%;
-    overflow-y: hidden;
-    overflow-x: auto;
-    white-space:nowrap;
-    font-size: 0;
-    &::-webkit-scrollbar {
-      display: none;
-    }
-    .activity-item {
-      display: inline-block;
-      position: relative;
-      width: 350/@r;
-      vertical-align: top;
-      &+.activity-item{
-        margin-left: 10/@r;
-      }
-    }
-    .img {
-      height: 210/@r;
-      background-color: #000;
-      overflow: hidden;
-      border-radius: 8/@r;
-    }
-    .activity-name {
-      padding: 20/@r 0 15/@r;
-      font-size: 28/@r;
-      color: #1A1A1A;
-    }
-    .activity-address, .activity-time {
-      color: #666;
-      font-size: 22/@r;
-      position: relative;
-      padding-left: 33/@r;
-      padding-top: 5/@r;
-      padding-bottom: 5/@r;
-    }
-    .activity-address {
-      overflow:hidden;
-      width: 294/@r;
-      text-overflow : ellipsis;
-      .address-icon {
-        position: absolute;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-        top: 50%;
-        left: 0;
-        width:20/@r;
-      }
-    }
-    .activity-time {
-      .van-icon-clock {
-        position: absolute;
-        -webkit-transform: translateY(-50%);
-        transform: translateY(-50%);
-        top: 50%;
-        left: 0;
-        font-size: 22/@r;
-        color: #808080;
-      }
+  .activity-name {
+    padding: 20 / @r 0 15 / @r;
+    font-size: 28 / @r;
+    color: #1a1a1a;
+  }
+  .activity-address,
+  .activity-time {
+    color: #666;
+    font-size: 22 / @r;
+    position: relative;
+    padding-left: 33 / @r;
+    padding-top: 5 / @r;
+    padding-bottom: 5 / @r;
+    .van-icon {
+      position: absolute;
+      -webkit-transform: translateY(-50%);
+      transform: translateY(-50%);
+      top: 50%;
+      left: 0;
+      color: #808080;
     }
   }
+  .activity-address {
+    overflow: hidden;
+    width: 294 / @r;
+    text-overflow: ellipsis;
+    .van-icon-location {
+      left: -3/@r;
+      font-size: 28 / @r;
+    }
+  }
+  .activity-time {
+    .van-icon-clock {
+      font-size: 22 / @r;
+    }
+  }
+}
 </style>
