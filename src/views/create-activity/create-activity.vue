@@ -16,17 +16,19 @@
     </div>
     <div class="list">
       <div class="item start" @click="startShow = true">
-        <!--<img src="../" alt="">-->
+        <van-icon name="clock"></van-icon>
         活动时间
         <div class="start-time">2019-04-06</div>
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div class="item end" @click="endShow = true">
+        <van-icon name="clock"></van-icon>
         报名截止时间
         <div class="end-time">2019-04-06</div>
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div class="item address">
+        <van-icon name="location"></van-icon>
         活动地点
         <input class="input" placeholder="请输入地址" type="text">
         <img class="icon" src="../../assets/img/more.png">
@@ -88,7 +90,7 @@
       <van-picker :columns="columns"
       @confirm="selectConfirm"
       @cancel="cancel"
-      show-toolbar title="标题"/>
+      show-toolbar title="选择活动类型"/>
     </van-popup>
   </div>
 </template>
@@ -229,9 +231,8 @@ export default {
 .item {
   padding-top: 20/@r;
   padding-bottom: 20/@r;
-  line-height: 1;
   position: relative;
-  font-size: 28/@r;
+  font-size: 26/@r;
   color: #666;
   background-color: #fff;
   border-radius: 10/@r;
@@ -243,23 +244,35 @@ export default {
     right: 20 / @r;
     width: 13 / @r;
   }
+  .van-icon {
+    position: absolute;
+    top: 50%;
+    left: 21/@r;
+    -webkit-transform: translateY(-50%);
+    transform: translateY(-50%);
+    font-size: 28/@r;
+  }
 }
 .start {
   padding-left: 61 / @r;
-  background: #fff url('./img/faqi_time.png') 21 / @r center no-repeat;
-  background-size: 20 / @r;
-  margin-bottom: 2 / @r;
+ border-bottom: 2/@r solid rgba(230, 230, 230, 1);
+  .van-icon {
+    color: #0cd71a;
+  }
 }
 .end {
   padding-left: 61 / @r;
-  background: #fff url('./img/clock.png') 21 / @r center no-repeat;
-  background-size: 20 / @r;
-  margin-bottom: 2 / @r;
+  .van-icon {
+    color: #df3031;
+  }
+  border-bottom: 2/@r solid rgba(230, 230, 230, 1);
 }
 .address {
   padding-left: 61 / @r;
-  background: #fff url('./img/location.png') 21 / @r center no-repeat;
-  background-size: 20 / @r 25 / @r;
+ .van-icon {
+    font-size: 31/@r;
+    color: #808080;
+  }
   margin-bottom: 19 / @r;
   .input {
     position: absolute;
@@ -316,7 +329,7 @@ export default {
   }
 }
 .person {
-  padding: 13 / @r 20 / @r;
+  padding:13/@r 20/@r;
   font-size: 0;
   margin-bottom: 10 / @r;
   .name {
@@ -332,12 +345,14 @@ export default {
   .name-input {
     position: absolute;
     top: 50%;
+    height: 100%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    right: 0;
+    right: 1px;
     width: 168 / @r;
     font-size: 26 / @r;
     border: none;
+    color: #212121;
   }
   .tel {
     position: relative;
@@ -352,11 +367,13 @@ export default {
     position: absolute;
     top: 50%;
     left: 64 / @r;
+    height: 100%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    right: 0;
+    width: 310/@r;
     font-size: 26 / @r;
     border: none;
+    color: #212121;
   }
 }
 .select {
