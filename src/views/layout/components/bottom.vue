@@ -33,11 +33,11 @@
   import indexSelectedImg from './img/index-selected.png'
   import myImg from './img/my.png'
   import mySelectedImg from './img/my-selected.png'
+  import { mapGetters } from 'vuex'
   export default {
     name: 'bottom',
     data() {
       return {
-        selected: 0,
         fixed: false,
         groupImg,
         groupSelectedImg,
@@ -47,15 +47,11 @@
         mySelectedImg
       }
     },
-    watch: {
-      '$route.meta'(val) {
-        if (!isNaN(val.icon)) {
-          this.selected = val.icon
-        }
+    computed: {
+      ...mapGetters(['bottomSelect']),
+      selected() {
+        return this.bottomSelect
       }
-    },
-    created() {
-      this.selected = this.$route.meta.icon
     }
   }
 </script>
