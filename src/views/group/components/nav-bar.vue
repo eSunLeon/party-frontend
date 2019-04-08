@@ -4,7 +4,7 @@
       <img src="./img/zixun.png" class="icon"/>
       <div>党群资讯</div>
     </router-link>
-    <router-link to="/activity" class="tab-item">
+    <router-link to="/activity/1" class="tab-item">
       <img src="./img/huodong.png" class="icon"/>
       <div>党建活动</div>
     </router-link>

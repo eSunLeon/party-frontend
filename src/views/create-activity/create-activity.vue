@@ -48,7 +48,8 @@
         </div>
       </div>
       <div class="item select" @click="selectShow = true">
-        活动类型：{{selectValue || '请选择活动类型'}}
+        活动类型：<span style="color: #212121;" v-if="selectValue">{{selectValue}}</span>
+        <span v-else>请选择活动类型</span>
         <img class="icon-bottom" src="./img/more_bottom.png">
       </div>
       <div class="describe">
@@ -115,20 +116,12 @@ export default {
       selectValue: '',
       columns: [
         {
-          text: '投票型',
+          text: '党内',
           id: '1'
         },
         {
-          text: '参与型',
+          text: '公开',
           id: '2'
-        },
-        {
-          text: '通知型',
-          id: '3'
-        },
-        {
-          text: '结对型',
-          id: '4'
         }
       ],
       params: {
@@ -139,6 +132,7 @@ export default {
         dutyName: '',
         dutyPhone: '',
         activityType: '',
+        activityClass: '',
         details: '',
         site: '',
         cost: ''
@@ -165,7 +159,7 @@ export default {
       this.selectShow = false
     },
     selectConfirm(value) {
-      this.params.activityType = value.id
+      this.params.activityClass = Number(value.id)
       this.selectValue = value.text
       this.selectShow = false
     },

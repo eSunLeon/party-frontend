@@ -4,10 +4,10 @@ import request from '@/utils/request'
  * 我的活动
  * @param state
  */
-export function myActivity(state) {
+export function myActivity(type, state) {
   return request({
     method: 'get',
-    url: '/dj/activity/items/1/' + state
+    url: '/dj/activity/items/' + type + '/' + state
   })
 }
 

@@ -16,7 +16,7 @@
     </div>
     <div class="title">资料设置</div>
     <div class="list">
-      <div class="item">
+      <div class="item" @click="sexShow = true">
         性别
         <span>{{userMsg.sex}}</span>
         <img class="icon" src="../../assets/img/more.png">
@@ -47,6 +47,12 @@
         <button @click="update('realName',name)">确定</button>
       </div>
     </van-popup>
+    <van-popup position="bottom" v-model="sexShow">
+      <van-picker :columns="columns"
+                  @confirm="selectConfirm"
+                  @cancel="cancel"
+                  show-toolbar title="选择性别"/>
+    </van-popup>
   </div>
 </template>
 <script>
@@ -66,7 +72,9 @@ export default {
     return {
       show: false,
       nameShow: false,
-      name: ''
+      name: '',
+      sexShow: false,
+      columns: ['男', '女']
     }
   },
   created() {
@@ -86,6 +94,9 @@ export default {
         if (res.returnCode === '200') {
           var user = { ...this.userMsg }
           user[key] = value
+          this.nameShow = false
+          this.show = false
+          this.sexShow = false
           this.$store.dispatch('setUser', user)
         }
       })
@@ -102,6 +113,12 @@ export default {
           this.update('headImgUrl', res.data.imgUrl)
         }
       })
+    },
+    cancel() {
+      this.sexShow = false
+    },
+    selectConfirm(value) {
+      this.update('sex', value)
     }
   }
 }
@@ -137,7 +154,9 @@ export default {
 }
 .img {
   position: absolute;
-  top: 16 / @r;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+  transform: translateY(-50%);
   right: 40 / @r;
   width: 99 / @r;
 }

@@ -11,7 +11,6 @@ const service = axios.create({
 
 service.interceptors.request.use(config => {
   if (store.getters.userMsg) {
-    console.log(store.getters.userMsg)
     config.headers['ACCESSTOEKN'] = store.getters.userMsg.token
     config.headers['USERID'] = store.getters.userMsg.userId
   }

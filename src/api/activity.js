@@ -35,7 +35,16 @@ export function activityDetail(id) {
     url: '/dj/activity/details/' + id
   })
 }
-
+/**
+ *  活动列表
+ * @param id
+ */
+export function activityList(type) {
+  return request({
+    method: 'get',
+    url: '/dj/activity/types/' + type
+  })
+}
 export function joinActivity(params) {
   return request({
     method: 'post',

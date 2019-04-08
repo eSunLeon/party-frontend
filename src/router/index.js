@@ -45,7 +45,7 @@ export const constantRouterMap = [
     meta: { title: '资讯详情', bg: '#fff', login: true }
   },
   {
-    path: '/activity',
+    path: '/activity/:activityClass',
     component: () => import('@/views/activity/activity'),
     name: 'activity',
     meta: { title: '活动', bg: '#F0F0F0' }

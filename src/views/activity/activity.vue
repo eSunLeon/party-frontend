@@ -21,11 +21,30 @@
 </template>
 <script>
   import headerNav from './components/header'
-
+  import { activityList } from '@/api/activity'
   export default {
     name: 'activity',
     components: {
       headerNav
+    },
+    data() {
+      return {
+        type: 1,
+        list: []
+      }
+    },
+    created() {
+      this.type = this.$route.params.activityClass
+      this.queryList()
+    },
+    methods: {
+      queryList() {
+        activityList(this.type).then(res => {
+          if (res.returnCode === '200') {
+            this.list = res.data.items
+          }
+        })
+      }
     }
   }
 </script>

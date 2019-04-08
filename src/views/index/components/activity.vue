@@ -2,7 +2,7 @@
   <div class="activity">
     <div class="title">
       社区活动
-      <span class="more">查看更多</span>
+      <span class="more" @click="$router.push('/activity/2')">查看更多</span>
     </div>
     <div class="activity-list">
       <router-link class="activity-item" to="/my">
@@ -68,6 +68,7 @@ export default {
   color: #808080;
   font-size: 24 / @r;
   font-weight: 500;
+  cursor: pointer;
 }
 .activity-list {
   padding-top: 20 / @r;
