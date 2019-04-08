@@ -3,13 +3,13 @@
     <header-nav title="发起活动"></header-nav>
     <div class="title">
       <div class="theme">
-        <input placeholder="请填写活动主题" type="text">
+        <input placeholder="请填写活动主题" type="text" v-model="params.title">
       </div>
       <div class="add-cover">
-        <div class="add" :class="{'add-no-border': baseSrc}">
-          <img :src="baseSrc" v-if="baseSrc" class="base-src">
-          <img class="add-icon" src="./img/add.png" v-if="!baseSrc">
-          <div class="text" v-if="!baseSrc">添加活动封面</div>
+        <div class="add" :class="{'add-no-border': params.mainImg}">
+          <img :src="params.mainImg" v-if="params.mainImg" class="base-src">
+          <img class="add-icon" src="./img/add.png" v-if="!params.mainImg">
+          <div class="text" v-if="!params.mainImg">添加活动封面</div>
           <input class="file" type="file" @change="changeImg($event)"/>
         </div>
       </div>
@@ -18,37 +18,37 @@
       <div class="item start" @click="startShow = true">
         <van-icon name="clock"></van-icon>
         活动时间
-        <div class="start-time">2019-04-06</div>
+        <div class="start-time">{{params.activityTime | formatCustomDate('-')}}</div>
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div class="item end" @click="endShow = true">
         <van-icon name="clock"></van-icon>
         报名截止时间
-        <div class="end-time">2019-04-06</div>
+        <div class="end-time">{{params.signEndTime | formatCustomDate('-')}}</div>
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div class="item address">
         <van-icon name="location"></van-icon>
         活动地点
-        <input class="input" placeholder="请输入地址" type="text">
+        <input class="input" placeholder="请输入地址" type="text" v-model="params.site">
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div class="item money">
         费用金额
-        <input class="input" placeholder="请输入费用金额" type="text">
+        <input class="input" placeholder="请输入费用金额" type="text" v-model="params.cost">
         <div class="yun">元</div>
       </div>
       <div class="item person">
         <div class="name">
           负责人:
-          <input class="name-input" placeholder="请输入姓名" type="text">
+          <input class="name-input" placeholder="请输入姓名" type="text" v-model="params.dutyName">
         </div>
         <div class="tel">
-          <input class="tel-input" placeholder="请输入手机号码" type="number">
+          <input class="tel-input" placeholder="请输入手机号码" type="number" v-model="params.dutyPhone">
         </div>
       </div>
       <div class="item select" @click="selectShow = true">
-        活动类型：请选择活动类型
+        活动类型：{{selectValue || '请选择活动类型'}}
         <img class="icon-bottom" src="./img/more_bottom.png">
       </div>
       <div class="describe">
@@ -56,10 +56,10 @@
           详细说明:
         </div>
         <div class="textarea">
-          <textarea v-model="message" rows="4" placeholder="请输入详细说明"></textarea>
+          <textarea rows="3" placeholder="请输入详细说明" v-model="params.details"></textarea>
         </div>
       </div>
-      <button class="submit">确认发布</button>
+      <button class="submit" @click="submit">确认发布</button>
     </div>
     <van-popup
       :close-on-click-overlay="false"
@@ -78,7 +78,8 @@
     </van-popup>
     <van-popup :close-on-click-overlay="false" :overlay="true" position="bottom" v-model="endShow">
       <van-datetime-picker
-        :min-date="minEndDate"
+        :min-date="minStartDate"
+        :max-date="maxEndDate"
         @confirm="confirmEnd"
         @cancel="cancel"
         title="结束日期"
@@ -97,7 +98,7 @@
 
 <script>
 import headerNav from '@/components/header'
-import { formatCustomDate } from '@/utils/index'
+import { uploadImg, createActivity } from '@/api/activity'
 export default {
   name: 'createActivity',
   components: {
@@ -105,33 +106,57 @@ export default {
   },
   data() {
     return {
-      baseSrc: null,
       minStartDate: new Date(),
       startDate: new Date(),
       startShow: false,
       endShow: false,
       endDate: new Date(),
       selectShow: false,
-      columns: ['Q', 'W', 'R', 'Y'],
+      selectValue: '',
+      columns: [
+        {
+          text: '投票型',
+          id: '1'
+        },
+        {
+          text: '参与型',
+          id: '2'
+        },
+        {
+          text: '通知型',
+          id: '3'
+        },
+        {
+          text: '结对型',
+          id: '4'
+        }
+      ],
       params: {
-        startDate: '',
-        endDate: ''
-      },
-      message: null
+        title: '',
+        mainImg: '',
+        activityTime: new Date().getTime(),
+        signEndTime: new Date().getTime(),
+        dutyName: '',
+        dutyPhone: '',
+        activityType: '',
+        details: '',
+        site: '',
+        cost: ''
+      }
     }
   },
   computed: {
-    minEndDate() {
+    maxEndDate() {
       return this.startDate
     }
   },
   methods: {
     confirmStart() {
-      console.log(formatCustomDate(this.startDate, '-'))
+      this.params.activityTime = this.startDate.getTime()
       this.startShow = false
     },
     confirmEnd() {
-      console.log(formatCustomDate(this.endDate, '-'))
+      this.params.signEndTime = this.endDate.getTime()
       this.endShow = false
     },
     cancel() {
@@ -140,24 +165,28 @@ export default {
       this.selectShow = false
     },
     selectConfirm(value) {
-      console.log(value)
+      this.params.activityType = value.id
+      this.selectValue = value.text
+      this.selectShow = false
     },
     changeImg(e) {
       var file = e.target.files[0]
       if (!/image\/(png|jpg|jpeg|gif)$/i.test(file.type)) {
-        this.baseSrc = null
+        this.params.mainImg = null
         return false
       }
-      var reader = new FileReader()
-      if (file) {
-        reader.readAsDataURL(file)
-      } else {
-        this.baseSrc = null
-      }
-      var _this = this
-      reader.onloadend = function() {
-        _this.baseSrc = reader.result
-      }
+      var formData = new FormData()
+      formData.append('file', file)
+      uploadImg(formData).then(res => {
+        if (res.returnCode === '200') {
+          this.params.mainImg = res.data.imgUrl
+        }
+      })
+    },
+    submit() {
+      createActivity(this.params).then(res => {
+        console.log(res)
+      })
     }
   }
 }
@@ -232,7 +261,7 @@ export default {
   padding-top: 20/@r;
   padding-bottom: 20/@r;
   position: relative;
-  font-size: 26/@r;
+  font-size: 28/@r;
   color: #666;
   background-color: #fff;
   border-radius: 10/@r;

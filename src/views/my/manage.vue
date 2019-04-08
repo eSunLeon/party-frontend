@@ -4,11 +4,11 @@
       <div>
         <router-link to="/integral" class="item">
           我的积分
-          <div class="integral">100积分</div>
+          <div class="integral">{{track}}积分</div>
           <img src="../../assets/img/more.png" class="more">
         </router-link>
         <router-link to="/history" class="item">
-          我已阅读
+          我的足迹
           <img src="../../assets/img/more.png" class="more">
         </router-link>
       </div>
@@ -25,11 +25,24 @@
     </div>
 </template>
 <script>
+  import { myAward } from '@/api/my'
   import top from './components/top'
   export default {
     name: 'user',
     components: {
       top
+    },
+    data() {
+      return {
+        track: '--'
+      }
+    },
+    created() {
+      myAward().then(res => {
+        if (res.returnCode === '200') {
+          this.track = res.data.myTotalAward
+        }
+      })
     }
   }
 </script>

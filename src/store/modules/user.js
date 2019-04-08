@@ -1,10 +1,21 @@
+import { getLocal, setLocal } from '@/utils/storage'
+var params = getLocal('user')
 const user = {
-  state: {},
+  state: {
+    userMsg: params ? JSON.parse(params) : null
+  },
 
-  mutations: {},
+  mutations: {
+    'SET_PARAMS': (state, params) => {
+      state.userMsg = params
+    }
+  },
 
   actions: {
-    // 登录
+    setUser({ commit }, params) {
+      setLocal('user', params)
+      commit('SET_PARAMS', params)
+    }
   }
 }
 

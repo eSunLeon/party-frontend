@@ -49,8 +49,12 @@
     },
     computed: {
       ...mapGetters(['bottomSelect']),
-      selected() {
-        return this.bottomSelect
+      selected: {
+        get() {
+          return this.bottomSelect
+        },
+        set() {
+        }
       }
     }
   }

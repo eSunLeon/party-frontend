@@ -21,6 +21,7 @@
   </div>
 </template>
 <script>
+  import { myActivity } from '@/api/my'
   import headerNav from '@/components/header'
 
   export default {
@@ -32,6 +33,9 @@
       return {
         active: 0
       }
+    },
+    created() {
+      myActivity(-2)
     }
   }
 </script>

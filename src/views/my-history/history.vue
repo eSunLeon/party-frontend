@@ -1,6 +1,6 @@
 <template>
   <div>
-    <header-nav title="我已阅读"></header-nav>
+    <header-nav title="我的足迹"></header-nav>
     <div class="list">
       <div class="item">
         <div class="text">
@@ -35,11 +35,24 @@
 
 </template>
 <script>
+  import { myTrack } from '@/api/my'
   import headerNav from '@/components/header'
   export default {
     name: 'history',
     components: {
       headerNav
+    },
+    data() {
+      return {
+        list: []
+      }
+    },
+    created() {
+      myTrack().then(res => {
+        if (res.returnCode === '200') {
+          this.list = res.data.items
+        }
+      })
     }
   }
 </script>

@@ -2,29 +2,28 @@
   <div>
     <header-nav title="党建资讯"></header-nav>
     <div class="tab-bar">
-      <div :key="index" class="tab" :class="{'active': index === 1}" v-for="(item, index) in tabList">{{item}}</div>
+      <div :key="index" class="tab" :class="{'active': item.id === id}"
+           v-for="(item, index) in tabList"
+      @click="changeTab(item.id)">{{item.name}}</div>
     </div>
     <div class="list">
-      <router-link to="/information-detail" class="item">
-        小支部大作为 党建引领凝聚前进力量引
-        领凝聚前进力量
-        <img src="../../assets/img/banner.png" class="src"/>
+      <router-link :to="'/information-detail/'+ item.id" class="item"
+      v-for="(item, index) in dataList" :key="index">
+        {{item.title}}
+        <img :src="item.mainImg" class="src"/>
         <div class="time">
-          2019-03-11
+          {{item.createTime | formatCustomDate('-')}}
           <div class="view">
-            <img class="view-icon" src="../../assets/img/view.png"/>5555
+            <img class="view-icon" src="../../assets/img/view.png"/>{{item.readTotal}}
           </div>
         </div>
       </router-link>
-      <div class="item">
-
-      </div>
     </div>
   </div>
 </template>
 <script>
   import headerNav from '@/components/header'
-
+  import { typeList, newsList } from '@/api/information'
   export default {
     name: 'information',
     components: {
@@ -32,17 +31,34 @@
     },
     data() {
       return {
-        tabList: [
-          '我的我的',
-          '我的我的',
-          '我的我的',
-          '我的我的',
-          '我的我的',
-          '我的我的',
-          '我的我的',
-          '我的我的',
-          '我的我的'
-        ]
+        tabList: [],
+        id: 0,
+        dataList: []
+      }
+    },
+    created() {
+      typeList().then(res => {
+        if (res.returnCode === '200') {
+          this.tabList = res.data.items
+          this.id = res.data.items[0].id
+          this.queryList()
+        }
+      }).catch(() => {})
+    },
+    methods: {
+      changeTab(id) {
+        if (this.id === id) {
+          return
+        }
+        this.id = id
+        this.queryList()
+      },
+      queryList() {
+        newsList(this.id).then(res => {
+          if (res.returnCode === '200') {
+            this.dataList = res.data.items
+          }
+        })
       }
     }
   }

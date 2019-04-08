@@ -6,6 +6,7 @@ import App from './App'
 import router from './router'
 import store from './store'
 import './permission' // permission control
+import * as filters from './filters'
 function mJudge() {
   var html = document.documentElement
   var hWidth = html.getBoundingClientRect().width
@@ -19,6 +20,11 @@ function mJudge() {
 mJudge()
 Vue.config.productionTip = false
 Vue.use(Vant)
+// register global utility filters.
+Object.keys(filters).forEach(key => {
+  Vue.filter(key, filters[key])
+})
+
 new Vue({
   el: '#app',
   router,

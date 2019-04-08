@@ -3,7 +3,7 @@
       <header-nav></header-nav>
       <div class="integral">
         <div class="number">
-          <div class="detail">64654</div>
+          <div class="detail">{{track}}</div>
           <div>积分</div>
         </div>
       </div>
@@ -12,31 +12,36 @@
           积分排行榜
         </div>
         <div class="list">
-          <div class="item">
+          <div class="item" v-for="(item, index) in list" :key="index">
             <img src="./img/touxiang.png"/>
-            吴优秀
-            <div class="fen">+ 998分</div>
-          </div>
-          <div class="item">
-            <img src="./img/touxiang.png"/>
-            吴优秀
-            <div class="fen">+ 998分</div>
-          </div>
-          <div class="item">
-            <img src="./img/touxiang.png"/>
-            吴优秀
-            <div class="fen">+ 998分</div>
+            {{item.userId}}
+            <div class="fen">{{item.totalAward}}分</div>
           </div>
         </div>
       </div>
     </div>
 </template>
 <script>
+  import { myAward } from '@/api/my'
   import headerNav from './components/header'
   export default {
     name: 'integral',
     components: {
       headerNav
+    },
+    data() {
+      return {
+        list: [],
+        track: '--'
+      }
+    },
+    created() {
+      myAward().then(res => {
+        if (res.returnCode === '200') {
+          this.track = res.data.myTotalAward
+          this.list = res.data.ranking
+        }
+      })
     }
   }
 </script>

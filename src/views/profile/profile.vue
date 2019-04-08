@@ -4,12 +4,13 @@
     <div class="user">
       <div @click="show = true" class="user-img">
         头像
-        <img class="img" src="./img/touxiang.png">
+        <img class="img" :src="userMsg.headImgUrl" v-if="userMsg.headImgUrl">
+        <img class="img" src="./img/touxiang.png" v-else>
         <img class="icon" src="../../assets/img/more.png">
       </div>
-      <div class="user-name">
+      <div class="user-name" @click="nameShow = true">
         真实姓名
-        <span>吴优秀</span>
+        <span>{{userMsg.realName}}</span>
         <img class="icon" src="../../assets/img/more.png">
       </div>
     </div>
@@ -17,47 +18,90 @@
     <div class="list">
       <div class="item">
         性别
-        <span>女</span>
+        <span>{{userMsg.sex}}</span>
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div class="item">
         手机号
-        <span>1326599659</span>
+        <span>{{userMsg.phone}}</span>
         <img class="icon" src="../../assets/img/more.png">
       </div>
     </div>
     <van-popup position="bottom" v-model="show">
       <div class="item-popup camera">
         拍照
-        <input accept="image/*" capture="camera" class="file" type="file">
+        <input accept="image/*" capture="camera" class="file" type="file" @change="changeImg($event)">
       </div>
       <div class="item-popup album">
         本地相册
-        <input class="file" name="file" type="file">
+        <input class="file" name="file" type="file" @change="changeImg($event)">
       </div>
       <div @click="show = false" class="item-popup">取消</div>
+    </van-popup>
+    <van-popup v-model="nameShow" class="popup-name">
+      <div class="item-name">
+        <input type="text" placeholder="请输入名字" v-model="name">
+      </div>
+      <div class="item-btn">
+        <button @click="nameShow = false">取消</button>
+        <button @click="update('realName',name)">确定</button>
+      </div>
     </van-popup>
   </div>
 </template>
 <script>
 import headerNav from '@/components/header'
-
+import { mapGetters } from 'vuex'
+import { updateUser } from '@/api/update'
+import { uploadImg } from '@/api/activity'
 export default {
   name: 'profile',
   components: {
     headerNav
   },
+  computed: {
+    ...mapGetters(['userMsg'])
+  },
   data() {
     return {
-      show: false
+      show: false,
+      nameShow: false,
+      name: ''
     }
   },
   created() {
+    this.name = this.userMsg.realName
     var ua = navigator.userAgent.toLowerCase()
     // 判断是否是苹果手机，是则是true
     var isIos = ua.indexOf('iphone') !== -1 || ua.indexOf('ipad') !== -1
     if (isIos) {
       // $('input:file').removeAttr('capture')
+    }
+  },
+  methods: {
+    update(key, value) {
+      var data = {}
+      data[key] = value
+      updateUser(data).then(res => {
+        if (res.returnCode === '200') {
+          var user = { ...this.userMsg }
+          user[key] = value
+          this.$store.dispatch('setUser', user)
+        }
+      })
+    },
+    changeImg(e) {
+      var file = e.target.files[0]
+      if (!/image\/(png|jpg|jpeg|gif)$/i.test(file.type)) {
+        return false
+      }
+      var formData = new FormData()
+      formData.append('file', file)
+      uploadImg(formData).then(res => {
+        if (res.returnCode === '200') {
+          this.update('headImgUrl', res.data.imgUrl)
+        }
+      })
     }
   }
 }
@@ -132,7 +176,7 @@ export default {
 .item-popup {
   position: relative;
   height: 88 / @r;
-  line-height: 89 / @r;
+  line-height: 88 / @r;
   text-align: center;
   font-size: 28 / @r;
   border-top: 1 / @r solid #e8e8e8;
@@ -155,4 +199,46 @@ export default {
 .album {
   margin-bottom: 30 / @r;
 }
+  .popup-name {
+    width: 90%;
+    padding: 20/@r;
+    background-color: #fff;
+    border-radius: 10/@r;
+    .item-name {
+      position: relative;
+      height: 88 / @r;
+      line-height: 88 / @r;
+      font-size: 28 / @r;
+      overflow: hidden;
+      input {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        border: none;
+        padding-left: 20/@r;
+      }
+    }
+    .item-btn {
+      display: -webkit-box;
+      display: -webkit-flex;
+      display: flex;
+      border: 1px solid #e0e0e0;
+      border-radius: 8/@r;
+      overflow: hidden;
+    }
+    button {
+      -webkit-box-flex: 1;
+      -webkit-flex: 1;
+      flex: 1;
+      font-size: 28/@r;
+      background-color: #fff;
+      height: 60/@r;
+      border: none;
+      &+button {
+        border-left: 1px solid #e0e0e0;
+      }
+    }
+  }
 </style>

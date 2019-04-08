@@ -10,9 +10,10 @@ const service = axios.create({
 })
 
 service.interceptors.request.use(config => {
-  console.log(config)
-  if (store.getters.token) {
-    // config.headers['X-Token'] = getToken()
+  if (store.getters.userMsg) {
+    console.log(store.getters.userMsg)
+    config.headers['ACCESSTOEKN'] = store.getters.userMsg.token
+    config.headers['USERID'] = store.getters.userMsg.userId
   }
   return config
 }, error => {
@@ -22,9 +23,7 @@ service.interceptors.request.use(config => {
 service.interceptors.response.use(
   response => {
     const res = response.data
-    if (res.retCode === 0) {
-      return res
-    }
+    return res
   },
   error => {
     Notify({
