@@ -47,7 +47,7 @@
     font-size: 26/@r;
     color: #1a1a1a;
     position: relative;
-    padding-left: 100/@r;
+    padding-left: 20/@r;
     img {
       position: absolute;
       top: 26/@r;

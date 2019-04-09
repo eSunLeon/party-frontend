@@ -32,12 +32,22 @@ export function myTrack() {
   })
 }
 /**
- * 我的足迹
+ * 我的积分详情
  * @param state
  */
 export function myTrackDetail() {
   return request({
     method: 'get',
     url: '/dj/my/track/flow'
+  })
+}
+/**
+ * 我的信息
+ * @param state
+ */
+export function myInfo() {
+  return request({
+    method: 'get',
+    url: '/dj/my/info'
   })
 }

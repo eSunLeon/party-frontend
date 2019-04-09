@@ -36,13 +36,13 @@ export const constantRouterMap = [
     path: '/information',
     component: () => import('@/views/information/information'),
     name: 'information',
-    meta: { title: '资讯', bg: '#fff', login: true }
+    meta: { title: '资讯', bg: '#fff' }
   },
   {
     path: '/information-detail/:id',
     component: () => import('@/views/information/information-detail'),
     name: 'informationDetail',
-    meta: { title: '资讯详情', bg: '#fff', login: true }
+    meta: { title: '资讯详情', bg: '#fff' }
   },
   {
     path: '/activity/:activityClass',
@@ -60,7 +60,7 @@ export const constantRouterMap = [
     path: '/create-activity',
     component: () => import('@/views/create-activity/create-activity'),
     name: 'createActivity',
-    meta: { title: '创建活动', bg: '#F0F0F0', login: true }
+    meta: { title: '创建活动', bg: '#F0F0F0' }
   },
   {
     path: '/notice',
@@ -102,37 +102,37 @@ export const constantRouterMap = [
     path: '/integral',
     component: () => import('@/views/my-integral/integral'),
     name: 'integral',
-    meta: { title: '我的积分', bg: '#F0F0F0', login: true }
+    meta: { title: '我的积分', bg: '#F0F0F0' }
   },
   {
     path: '/integral-detail',
     component: () => import('@/views/my-integral/integral-detail'),
     name: 'integralDetail',
-    meta: { title: '积分明细', bg: '#F0F0F0', login: true }
+    meta: { title: '积分明细', bg: '#F0F0F0' }
   },
   {
     path: '/my-activity',
     component: () => import('@/views/my-activity/activity'),
     name: 'myActivity',
-    meta: { title: '我的活动', bg: '#F0F0F0', login: true }
+    meta: { title: '我的活动', bg: '#F0F0F0' }
   },
   {
     path: '/task',
     component: () => import('@/views/my-task/task'),
     name: 'task',
-    meta: { title: '我的任务', bg: '#F0F0F0', login: true }
+    meta: { title: '我的任务', bg: '#F0F0F0' }
   },
   {
     path: '/history',
     component: () => import('@/views/my-history/history'),
     name: 'history',
-    meta: { title: '我的足迹', bg: '#fff', login: true }
+    meta: { title: '我的足迹', bg: '#fff' }
   },
   {
     path: '/setting',
     component: () => import('@/views/setting/setting'),
     name: 'setting',
-    meta: { title: '设置', bg: '#F0F0F0', login: true }
+    meta: { title: '设置', bg: '#F0F0F0' }
   },
   {
     path: '/about',
@@ -144,7 +144,7 @@ export const constantRouterMap = [
     path: '/profile',
     component: () => import('@/views/profile/profile'),
     name: 'profile',
-    meta: { title: '个人资料', bg: '#F0F0F0', login: true }
+    meta: { title: '个人资料', bg: '#F0F0F0' }
   },
   {
     path: '/search',

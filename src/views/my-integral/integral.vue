@@ -13,7 +13,7 @@
         </div>
         <div class="list">
           <div class="item" v-for="(item, index) in list" :key="index">
-            <img src="./img/touxiang.png"/>
+            <img src="../../assets/img/touxiang.png"/>
             {{item.userId}}
             <div class="fen">{{item.totalAward}}分</div>
           </div>

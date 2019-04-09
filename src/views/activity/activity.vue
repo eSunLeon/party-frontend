@@ -21,7 +21,6 @@
 </template>
 <script>
   import headerNav from './components/header'
-  import { activityList } from '@/api/activity'
   export default {
     name: 'activity',
     components: {
@@ -39,11 +38,11 @@
     },
     methods: {
       queryList() {
-        activityList(this.type).then(res => {
-          if (res.returnCode === '200') {
-            this.list = res.data.items
-          }
-        })
+        // activityList(this.type).then(res => {
+        //   if (res.returnCode === '200') {
+        //     this.list = res.data.items
+        //   }
+        // })
       }
     }
   }

@@ -2,32 +2,17 @@
   <div>
     <header-nav title="我的足迹"></header-nav>
     <div class="list">
-      <div class="item">
+      <div class="item" v-for="(item, index) in list" :key="index">
         <div class="text">
-          小支部大作为 党建引领凝聚前进力量引
-          领凝聚前进力量
+          {{item.title}}
         </div>
-        <img src="../../assets/img/banner.png" class="banner">
+        <img :src="item.mainImg" class="banner">
         <div class="time">
-          2019-03-11
-          <div class="number">
-            <img src="../../assets/img/view.png" class="view-icon">
-            324
-          </div>
-        </div>
-      </div>
-      <div class="item">
-        <div class="text">
-          小支部大作为 党建引领凝聚前进力量引
-          领凝聚前进力量
-        </div>
-        <img src="../../assets/img/banner.png" class="banner">
-        <div class="time">
-          2019-03-11
-          <div class="number">
-            <img src="../../assets/img/view.png" class="view-icon">
-            3243
-          </div>
+          {{item.createdTime | formatCustomDate('-')}}
+<!--          <div class="number">-->
+<!--            <img src="../../assets/img/view.png" class="view-icon">-->
+<!--            324-->
+<!--          </div>-->
         </div>
       </div>
     </div>
@@ -50,7 +35,7 @@
     created() {
       myTrack().then(res => {
         if (res.returnCode === '200') {
-          this.list = res.data.items
+          this.list = res.data
         }
       })
     }

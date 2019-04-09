@@ -36,7 +36,7 @@ export function activityDetail(id) {
   })
 }
 /**
- *  活动列表
+ *  活动类型列表
  * @param id
  */
 export function activityList(type) {

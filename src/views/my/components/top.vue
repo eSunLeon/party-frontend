@@ -7,7 +7,8 @@
       </router-link>
     </div>
     <div class="name">
-      <img src="../img/touxiang.png">
+      <img class="img" :src="info.headImg" v-if="info.headImg">
+      <img class="img" src="../../../assets/img/touxiang.png" v-else>
       <div class="user-name">
         吴优秀
       </div>
@@ -33,8 +34,12 @@
 </template>
 
 <script>
+  import { mapGetters } from 'vuex'
   export default {
-    name: 'top'
+    name: 'top',
+    computed: {
+      ...mapGetters(['info'])
+    }
   }
 </script>
 
@@ -68,7 +73,7 @@
     text-align: center;
     padding: 12/@r;
     img {
-      width: 111/@r;
+      height: 111/@r;
     }
     .user-name {
       font-size: 30/@r;

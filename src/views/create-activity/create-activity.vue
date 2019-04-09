@@ -91,7 +91,7 @@
     <van-popup :close-on-click-overlay="false" :overlay="true" position="bottom" v-model="selectShow">
       <van-picker :columns="columns"
       @confirm="selectConfirm"
-      @cancel="cancel"
+      @cancel="cancel" @change="onChange"
       show-toolbar title="选择活动类型"/>
     </van-popup>
   </div>
@@ -99,7 +99,7 @@
 
 <script>
 import headerNav from '@/components/header'
-import { uploadImg, createActivity } from '@/api/activity'
+import { uploadImg, createActivity, activityList } from '@/api/activity'
 export default {
   name: 'createActivity',
   components: {
@@ -114,16 +114,21 @@ export default {
       endDate: new Date(),
       selectShow: false,
       selectValue: '',
-      columns: [
-        {
-          text: '党内',
-          id: '1'
-        },
-        {
-          text: '公开',
-          id: '2'
-        }
-      ],
+      activityClass: {
+        '党内': [
+          {
+            text: 'aa',
+            id: 1
+          }
+        ],
+        '公开': [
+          {
+            text: 'aa',
+            id: 1
+          }
+        ]
+      },
+      columns: [],
       params: {
         title: '',
         mainImg: '',
@@ -144,7 +149,39 @@ export default {
       return this.startDate
     }
   },
+  created() {
+    activityList(1).then(res => {
+      if (res.returnCode === '200') {
+        for (let j = 0; j < res.data.length; j++) {
+          res.data[j].text = res.data[j].name
+        }
+        this.activityClass['党内'] = [...res.data]
+        activityList(2).then(res => {
+          if (res.returnCode === '200') {
+            for (let j = 0; j < res.data.length; j++) {
+              res.data[j].text = res.data[j].name
+            }
+            this.activityClass['公开'] = [...res.data]
+            var test = [
+              {
+                values: Object.keys(this.activityClass),
+                className: 'column1'
+              },
+              {
+                values: this.activityClass['党内'],
+                className: 'column2'
+              }
+            ]
+            this.columns = test
+          }
+        })
+      }
+    })
+  },
   methods: {
+    onChange(picker, values) {
+      picker.setColumnValues(1, this.activityClass[values[0]])
+    },
     confirmStart() {
       this.params.activityTime = this.startDate.getTime()
       this.startShow = false
@@ -159,8 +196,13 @@ export default {
       this.selectShow = false
     },
     selectConfirm(value) {
-      this.params.activityClass = Number(value.id)
-      this.selectValue = value.text
+      if (value[0] === '公开') {
+        this.params.activityClass = 2
+      } else {
+        this.params.activityClass = 1
+      }
+      this.params.activityType = value[1].id
+      this.selectValue = value[1].text
       this.selectShow = false
     },
     changeImg(e) {
@@ -179,7 +221,23 @@ export default {
     },
     submit() {
       createActivity(this.params).then(res => {
-        console.log(res)
+        if (res.returnCode === '200') {
+          this.$toast.success('创建成功!')
+          this.selectValue = null
+          this.params = {
+            title: '',
+            mainImg: '',
+            activityTime: new Date().getTime(),
+            signEndTime: new Date().getTime(),
+            dutyName: '',
+            dutyPhone: '',
+            activityType: '',
+            activityClass: '',
+            details: '',
+            site: '',
+            cost: ''
+          }
+        }
       })
     }
   }

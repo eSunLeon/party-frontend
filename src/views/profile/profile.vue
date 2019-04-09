@@ -4,13 +4,13 @@
     <div class="user">
       <div @click="show = true" class="user-img">
         头像
-        <img class="img" :src="userMsg.headImgUrl" v-if="userMsg.headImgUrl">
-        <img class="img" src="./img/touxiang.png" v-else>
+        <img class="img" :src="info.headImg" v-if="info.headImg">
+        <img class="img" src="../../assets/img/touxiang.png" v-else>
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div class="user-name" @click="nameShow = true">
         真实姓名
-        <span>{{userMsg.realName}}</span>
+        <span>{{info.name}}</span>
         <img class="icon" src="../../assets/img/more.png">
       </div>
     </div>
@@ -18,12 +18,12 @@
     <div class="list">
       <div class="item" @click="sexShow = true">
         性别
-        <span>{{userMsg.sex}}</span>
+        <span>{{info.sex | sexType}}</span>
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div class="item">
         手机号
-        <span>{{userMsg.phone}}</span>
+        <span>{{info.phone}}</span>
         <img class="icon" src="../../assets/img/more.png">
       </div>
     </div>
@@ -44,7 +44,7 @@
       </div>
       <div class="item-btn">
         <button @click="nameShow = false">取消</button>
-        <button @click="update('realName',name)">确定</button>
+        <button @click="update('name',name)">确定</button>
       </div>
     </van-popup>
     <van-popup position="bottom" v-model="sexShow">
@@ -66,7 +66,7 @@ export default {
     headerNav
   },
   computed: {
-    ...mapGetters(['userMsg'])
+    ...mapGetters(['info'])
   },
   data() {
     return {
@@ -74,11 +74,20 @@ export default {
       nameShow: false,
       name: '',
       sexShow: false,
-      columns: ['男', '女']
+      columns: [
+        {
+          text: '男',
+          id: 1
+        },
+        {
+          text: '女',
+          id: 0
+        }
+      ]
     }
   },
   created() {
-    this.name = this.userMsg.realName
+    this.name = this.info.name
     var ua = navigator.userAgent.toLowerCase()
     // 判断是否是苹果手机，是则是true
     var isIos = ua.indexOf('iphone') !== -1 || ua.indexOf('ipad') !== -1
@@ -92,12 +101,13 @@ export default {
       data[key] = value
       updateUser(data).then(res => {
         if (res.returnCode === '200') {
-          var user = { ...this.userMsg }
+          this.$toast.success('修改成功!')
+          var user = { ...this.info }
           user[key] = value
           this.nameShow = false
           this.show = false
           this.sexShow = false
-          this.$store.dispatch('setUser', user)
+          this.$store.dispatch('setInfo', user)
         }
       })
     },
@@ -110,7 +120,7 @@ export default {
       formData.append('file', file)
       uploadImg(formData).then(res => {
         if (res.returnCode === '200') {
-          this.update('headImgUrl', res.data.imgUrl)
+          this.update('headImg', res.data.imgUrl)
         }
       })
     },
@@ -118,7 +128,15 @@ export default {
       this.sexShow = false
     },
     selectConfirm(value) {
-      this.update('sex', value)
+      this.update('sex', value.id)
+    }
+  },
+  filters: {
+    sexType(val) {
+      if (!isNaN(val)) {
+        var sex = ['女', '男']
+        return sex[val]
+      }
     }
   }
 }
