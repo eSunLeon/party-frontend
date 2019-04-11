@@ -25,11 +25,6 @@ service.interceptors.response.use(
     return res
   },
   error => {
-    Notify({
-      message: '通知内容',
-      duration: 1000,
-      background: '#1989fa'
-    })
     return Promise.reject(error)
   })
 
