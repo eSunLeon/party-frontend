@@ -93,7 +93,7 @@ export const constantRouterMap = [
     meta: { title: '公示公告', icon: 'icon-users' }
   },
   {
-    path: '/notice/public-detail',
+    path: '/notice/public-detail/:id',
     component: () => import('@/views/notice-detail/public-detail'),
     name: 'publicDetail',
     meta: { title: '公示详情', bg: '#fff' }
