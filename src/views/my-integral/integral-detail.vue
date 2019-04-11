@@ -2,7 +2,7 @@
   <div>
     <header-nav title="积分详情"></header-nav>
     <div class="list">
-      <div class="item" v-for="(item, index) in list" :key="index">
+      <div class="item" v-for="(item, index) in integral" :key="index">
 <!--        <img src="./img/wenzhang.png"/>-->
         {{item}}
         <div class="fen">+ {{item}}分</div>
