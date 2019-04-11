@@ -116,3 +116,19 @@ export function formatCustomDate(times, option) {
   }
   return y + option + zero(m) + option + zero(d)
 }
+export function formatCustomDateTime(times, option) {
+  // console.log(times)
+  var time = new Date(times)
+  const y = time.getFullYear()
+  const m = time.getMonth() + 1
+  const d = time.getDate()
+  const h = time.getHours()
+  const f = time.getMinutes()
+  function zero(val) {
+    if (val < 10) {
+      return '0' + val
+    }
+    return val
+  }
+  return y + option + zero(m) + option + zero(d) + ' ' + zero(h) + ':' + zero(f)
+}
