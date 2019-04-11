@@ -109,6 +109,8 @@ export default {
           this.sexShow = false
           this.$store.dispatch('setInfo', user)
         }
+      }).catch(() => {
+        this.$toast.fail('修改失败!')
       })
     },
     changeImg(e) {
