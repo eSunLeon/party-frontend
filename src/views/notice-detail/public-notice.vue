@@ -2,13 +2,13 @@
     <div>
       <header-nav title="公示公告"></header-nav>
       <div class="list">
-        <router-link to="/notice/public-detail" class="item">
+        <router-link v-for="(item, index) in list" :key="index" :to="'/notice/public-detail/'+item.id" class="item">
           <div class="title">
             <img src="../../assets/img/gonggao.png" class="title-icon">
-            党内十三届全国人大二次会议在京开幕
+            {{item.title}}
           </div>
           <div class="time">
-            2019-03-11 09:10
+            {{item.downTime | formatCustomDateTime('-')}}
           </div>
         </router-link>
       </div>
@@ -16,11 +16,28 @@
 </template>
 <script>
   import headerNav from '@/components/header'
-
+  import { publicList } from '@/api/notice'
   export default {
     name: 'innerParty',
     components: {
       headerNav
+    },
+    data() {
+      return {
+        list: []
+      }
+    },
+    created() {
+      this.queryList()
+    },
+    methods: {
+      queryList() {
+        publicList().then(res => {
+          if (res.returnCode === '200') {
+            this.list = res.data
+          }
+        })
+      }
     }
   }
 </script>
