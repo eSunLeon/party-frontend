@@ -1,5 +1,4 @@
 import axios from 'axios'
-import { Notify } from 'vant'
 
 import store from '@/store'
 // import { getToken } from '@/utils/auth'
