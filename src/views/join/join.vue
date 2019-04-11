@@ -73,23 +73,45 @@
         </div>
       </div>
     </div>
-    <div id="join">
+    <div id="join" @click="">
       <div class="join-icon">
         <img src="./img/canjia.png" class="icon-30">
         立即参加
       </div>
-
     </div>
   </div>
 </template>
 
 <script>
   import headerNav from './components/header'
-
+  import { activityDetail, joinActivity } from '@/api/activity'
   export default {
     name: 'join',
     components: {
       headerNav
+    },
+    data() {
+      return {
+        activityParams: {}
+      }
+    },
+    created() {
+      activityDetail(this.$route.params.id).then(res => {
+        console.log(res)
+      })
+    },
+    methods: {
+      join() {
+        joinActivity({
+          activityId: this.$route.params.id
+        }).then(res => {
+          if (res.returnCode === '200') {
+            this.$toast.success('参加成功!')
+          }
+        }).catch(() => {
+        this.$toast.fail('参加失败!')
+      })
+      }
     }
   }
 </script>
@@ -206,6 +228,7 @@
     color: #fff;
     -webkit-box-shadow:0px -3/@r 7/@r 0px rgba(4,0,0,0.27);
     box-shadow:0px -3/@r 7/@r 0px rgba(4,0,0,0.27);
+    cursor: pointer;
     .icon-30 {
       position: absolute;
       top: 50%;
