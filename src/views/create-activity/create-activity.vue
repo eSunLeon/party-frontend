@@ -210,16 +210,19 @@ export default {
       formData.append('file', file)
       uploadImg(formData).then(res => {
         if (res.returnCode === '200') {
+          this.$toast.success('图片上传成功!')
           this.params.mainImg = res.data.imgUrl
         }
+      }).catch(() => {
+        this.$toast.fail('图片上传失败!')
       })
     },
     notifyMsg(msg) {
       this.$notify({
-          message: msg,
-          duration: 1000,
-          background: '#df3031'
-        })
+        message: msg,
+        duration: 1000,
+        background: '#df3031'
+      })
     },
     submit() {
       if (!this.params.title) {
@@ -268,6 +271,8 @@ export default {
             cost: ''
           }
         }
+      }).catch(() => {
+        this.$toast.fail('创建失败!')
       })
     }
   }
