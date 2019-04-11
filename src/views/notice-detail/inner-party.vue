@@ -2,34 +2,19 @@
     <div>
       <header-nav title="党内通报"></header-nav>
       <div class="list">
-        <div class="item">
+        <div class="item" v-for="(item, index) in list" :key="index">
           <div class="title">
             <img src="../../assets/img/gonggao.png" class="title-icon">
-            【会议】党建使用培训会议
+            {{item.name}}
           </div>
           <div class="time">
-            <b>时间:</b>2019-03-11 09:10
+            <b>时间:</b>{{item.startTime | formatCustomDateTime('-')}}
           </div>
           <div class="time">
-            <b>地址:</b>8楼802会议厅
+            <b>地址:</b>{{item.address}}
           </div>
           <div class="time">
-            <b>发起人:</b>党办
-          </div>
-        </div>
-        <div class="item">
-          <div class="title">
-            <img src="../../assets/img/gonggao.png" class="title-icon">
-            【会议】党建使用培训会议
-          </div>
-          <div class="time">
-            <b>时间:</b>2019-03-11 09:10
-          </div>
-          <div class="time">
-            <b>地址:</b>8楼802会议厅
-          </div>
-          <div class="time">
-            <b>发起人:</b>党办
+            <b>发起人:</b>{{item.createdBy}}
           </div>
         </div>
       </div>
@@ -37,11 +22,28 @@
 </template>
 <script>
   import headerNav from '@/components/header'
-
+  import { innerPartyList } from '@/api/notice'
   export default {
     name: 'innerParty',
     components: {
       headerNav
+    },
+    data() {
+      return {
+        list: []
+      }
+    },
+    created() {
+      this.queryList()
+    },
+    methods: {
+      queryList() {
+        innerPartyList().then(res => {
+          if (res.returnCode === '200') {
+            this.list = res.data
+          }
+        })
+      }
     }
   }
 </script>
