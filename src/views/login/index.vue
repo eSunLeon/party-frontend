@@ -39,6 +39,8 @@
             this.$store.dispatch('setUser', res.data)
             this.$router.push('/')
           }
+        }).catch(() => {
+          this.$toast.fail('验证失败!')
         })
       },
       sending() {
@@ -57,6 +59,8 @@
               }
             }, 1000)
           }
+        }).catch(() => {
+          this.$toast.fail('信息发送失败!')
         })
       }
     }
