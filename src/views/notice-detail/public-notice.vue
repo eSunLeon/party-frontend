@@ -2,7 +2,7 @@
     <div>
       <header-nav title="公示公告"></header-nav>
       <div class="list">
-        <router-link v-for="(item, index) in list" :key="index" :to="'/notice/public-detail/'+item.id" class="item">
+        <div v-for="(item, index) in list" :key="index" @click="jump(item)" class="item">
           <div class="title">
             <img src="../../assets/img/gonggao.png" class="title-icon">
             {{item.title}}
@@ -10,13 +10,14 @@
           <div class="time">
             {{item.downTime | formatCustomDateTime('-')}}
           </div>
-        </router-link>
+        </div>
       </div>
     </div>
 </template>
 <script>
   import headerNav from '@/components/header'
   import { publicList } from '@/api/notice'
+  import { setLocal } from '@/utils/storage'
   export default {
     name: 'innerParty',
     components: {
@@ -37,6 +38,10 @@
             this.list = res.data
           }
         })
+      },
+      jump(item) {
+        setLocal('public', item)
+        this.$router.push('/notice/public-detail/' + item.id)
       }
     }
   }
@@ -52,6 +57,7 @@
     -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
     box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
     padding-top: 30/@r;
+    cursor: pointer;
     >div {
       padding-left: 46/@r;
     }
