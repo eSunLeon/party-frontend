@@ -6,36 +6,33 @@
         <input placeholder="请填写活动主题" type="text" v-model="params.title">
       </div>
       <div class="add-cover">
-        <div class="add" :class="{'add-no-border': params.mainImg}">
-          <img :src="params.mainImg" v-if="params.mainImg" class="base-src">
+        <div :class="{'add-no-border': params.mainImg}" class="add">
+          <img :src="params.mainImg" class="base-src" v-if="params.mainImg">
           <img class="add-icon" src="./img/add.png" v-if="!params.mainImg">
           <div class="text" v-if="!params.mainImg">添加活动封面</div>
-          <input class="file" type="file" @change="changeImg($event)"/>
+          <input @change="changeImg($event)" class="file" type="file">
         </div>
       </div>
     </div>
     <div class="list">
-      <div class="item start" @click="startShow = true">
-        <van-icon name="clock"></van-icon>
-        活动时间
+      <div @click="startShow = true" class="item start">
+        <van-icon name="clock"></van-icon>活动时间
         <div class="start-time">{{params.activityTime | formatCustomDate('-')}}</div>
         <img class="icon" src="../../assets/img/more.png">
       </div>
-      <div class="item end" @click="endShow = true">
-        <van-icon name="clock"></van-icon>
-        报名截止时间
+      <div @click="endShow = true" class="item end">
+        <van-icon name="clock"></van-icon>报名截止时间
         <div class="end-time">{{params.signEndTime | formatCustomDate('-')}}</div>
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div class="item address">
-        <van-icon name="location"></van-icon>
-        活动地点
+        <van-icon name="location"></van-icon>活动地点
         <input class="input" placeholder="请输入地址" type="text" v-model="params.site">
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div class="item money">
         费用金额
-        <input class="input" placeholder="请输入费用金额" type="text" v-model="params.cost">
+        <input class="input" placeholder="请输入费用金额" type="number" v-model="params.cost">
         <div class="yun">元</div>
       </div>
       <div class="item person">
@@ -47,20 +44,19 @@
           <input class="tel-input" placeholder="请输入手机号码" type="number" v-model="params.dutyPhone">
         </div>
       </div>
-      <div class="item select" @click="selectShow = true">
-        活动类型：<span style="color: #212121;" v-if="selectValue">{{selectValue}}</span>
+      <div @click="selectShow = true" class="item select">
+        活动类型：
+        <span style="color: #212121;" v-if="selectValue">{{selectValue}}</span>
         <span v-else>请选择活动类型</span>
         <img class="icon-bottom" src="./img/more_bottom.png">
       </div>
       <div class="describe">
-        <div class=label>
-          详细说明:
-        </div>
+        <div class="label">详细说明:</div>
         <div class="textarea">
-          <textarea rows="3" placeholder="请输入详细说明" v-model="params.details"></textarea>
+          <textarea placeholder="请输入详细说明" rows="3" v-model="params.details"></textarea>
         </div>
       </div>
-      <button class="submit" @click="submit">确认发布</button>
+      <button @click="submit" class="submit">确认发布</button>
     </div>
     <van-popup
       :close-on-click-overlay="false"
@@ -70,8 +66,8 @@
     >
       <van-datetime-picker
         :min-date="minStartDate"
-        @confirm="confirmStart"
         @cancel="cancel"
+        @confirm="confirmStart"
         title="开始日期"
         type="date"
         v-model="startDate"
@@ -79,20 +75,29 @@
     </van-popup>
     <van-popup :close-on-click-overlay="false" :overlay="true" position="bottom" v-model="endShow">
       <van-datetime-picker
-        :min-date="minStartDate"
         :max-date="maxEndDate"
-        @confirm="confirmEnd"
+        :min-date="minStartDate"
         @cancel="cancel"
+        @confirm="confirmEnd"
         title="结束日期"
         type="date"
         v-model="endDate"
       />
     </van-popup>
-    <van-popup :close-on-click-overlay="false" :overlay="true" position="bottom" v-model="selectShow">
-      <van-picker :columns="columns"
-      @confirm="selectConfirm"
-      @cancel="cancel" @change="onChange"
-      show-toolbar title="选择活动类型"/>
+    <van-popup
+      :close-on-click-overlay="false"
+      :overlay="true"
+      position="bottom"
+      v-model="selectShow"
+    >
+      <van-picker
+        :columns="columns"
+        @cancel="cancel"
+        @change="onChange"
+        @confirm="selectConfirm"
+        show-toolbar
+        title="选择活动类型"
+      />
     </van-popup>
   </div>
 </template>
@@ -115,18 +120,8 @@ export default {
       selectShow: false,
       selectValue: '',
       activityClass: {
-        '党内': [
-          {
-            text: 'aa',
-            id: 1
-          }
-        ],
-        '公开': [
-          {
-            text: 'aa',
-            id: 1
-          }
-        ]
+        党内: [],
+        公开: []
       },
       columns: [],
       params: {
@@ -219,7 +214,42 @@ export default {
         }
       })
     },
+    notifyMsg(msg) {
+      this.$notify({
+          message: msg,
+          duration: 1000,
+          background: '#df3031'
+        })
+    },
     submit() {
+      if (!this.params.title) {
+        this.notifyMsg('请填写活动主题')
+        return
+      }
+      if (!this.params.mainImg) {
+        this.notifyMsg('请添加活动封面')
+        return
+      }
+      if (!this.params.site) {
+        this.notifyMsg('请填写活动地点')
+        return
+      }
+      if (!this.params.cost) {
+        this.notifyMsg('请填写费用金额')
+        return
+      }
+      if (!this.params.dutyName) {
+        this.notifyMsg('请填写负责人')
+        return
+      }
+      if (!this.params.dutyPhone) {
+        this.notifyMsg('请填写手机号码')
+        return
+      }
+      if (!this.selectValue) {
+        this.notifyMsg('请选择活动类型')
+        return
+      }
       createActivity(this.params).then(res => {
         if (res.returnCode === '200') {
           this.$toast.success('创建成功!')
@@ -282,7 +312,7 @@ export default {
   .base-src {
     position: absolute;
     top: 0;
-    left:0;
+    left: 0;
     width: 100%;
     height: 100%;
   }
@@ -303,20 +333,20 @@ export default {
     opacity: 0;
   }
 }
-.add-no-border{
+.add-no-border {
   border: none;
 }
 .list {
   padding: 0 20 / @r;
 }
 .item {
-  padding-top: 20/@r;
-  padding-bottom: 20/@r;
+  padding-top: 20 / @r;
+  padding-bottom: 20 / @r;
   position: relative;
-  font-size: 28/@r;
+  font-size: 28 / @r;
   color: #666;
   background-color: #fff;
-  border-radius: 10/@r;
+  border-radius: 10 / @r;
   .icon {
     position: absolute;
     top: 50%;
@@ -328,15 +358,15 @@ export default {
   .van-icon {
     position: absolute;
     top: 50%;
-    left: 21/@r;
+    left: 21 / @r;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    font-size: 28/@r;
+    font-size: 28 / @r;
   }
 }
 .start {
   padding-left: 61 / @r;
- border-bottom: 2/@r solid rgba(230, 230, 230, 1);
+  border-bottom: 2 / @r solid rgba(230, 230, 230, 1);
   .van-icon {
     color: #0cd71a;
   }
@@ -346,12 +376,12 @@ export default {
   .van-icon {
     color: #df3031;
   }
-  border-bottom: 2/@r solid rgba(230, 230, 230, 1);
+  border-bottom: 2 / @r solid rgba(230, 230, 230, 1);
 }
 .address {
   padding-left: 61 / @r;
- .van-icon {
-    font-size: 31/@r;
+  .van-icon {
+    font-size: 31 / @r;
     color: #808080;
   }
   margin-bottom: 19 / @r;
@@ -410,7 +440,7 @@ export default {
   }
 }
 .person {
-  padding:13/@r 20/@r;
+  padding: 13 / @r 20 / @r;
   font-size: 0;
   margin-bottom: 10 / @r;
   .name {
@@ -451,7 +481,7 @@ export default {
     height: 100%;
     -webkit-transform: translateY(-50%);
     transform: translateY(-50%);
-    width: 310/@r;
+    width: 310 / @r;
     font-size: 26 / @r;
     border: none;
     color: #212121;
@@ -481,26 +511,26 @@ export default {
   font-size: 28 / @r;
   color: #666;
   .label {
-    padding-top: 4/@r;
-    width: 166/@r;
-    max-width: 166/@r;
-    font-size: 26/@r;
+    padding-top: 4 / @r;
+    width: 166 / @r;
+    max-width: 166 / @r;
+    font-size: 26 / @r;
   }
   .textarea {
     -webkit-box-flex: 1;
     -webkit-flex: 1;
-    flex: 1
+    flex: 1;
   }
-  .textarea textarea{
-  border: 0;
-  margin: 0;
-  line-height: 36/@r;
-  width: 100%;
-  resize: none;
-  display: block;
-  box-sizing: border-box;
-  background-color: transparent;
-  color: #212121;
+  .textarea textarea {
+    border: 0;
+    margin: 0;
+    line-height: 36 / @r;
+    width: 100%;
+    resize: none;
+    display: block;
+    box-sizing: border-box;
+    background-color: transparent;
+    color: #212121;
   }
 }
 .submit {
