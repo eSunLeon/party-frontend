@@ -95,6 +95,7 @@ export default {
   width: 564 / @r;
   font-size: 26 / @r;
   color: #666;
+  padding-top: 3/@r;
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;

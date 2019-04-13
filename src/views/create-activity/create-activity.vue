@@ -586,7 +586,7 @@ export default {
     padding-top: 4 / @r;
     width: 146 / @r;
     max-width: 166 / @r;
-    font-size: 26 / @r;
+    font-size: 28 / @r;
   }
   .textarea {
     -webkit-box-flex: 1;
