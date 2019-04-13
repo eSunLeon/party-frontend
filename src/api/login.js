@@ -11,3 +11,9 @@ export function login(phone, msg) {
     url: `/public/login/${phone}/${msg}`
   })
 }
+export function logout(phone) {
+  return request({
+    method: 'post',
+    url: `/public/loginout/${phone}`
+  })
+}

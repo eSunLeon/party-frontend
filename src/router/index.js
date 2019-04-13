@@ -150,7 +150,7 @@ export const constantRouterMap = [
     path: '/search',
     component: () => import('@/views/search/search'),
     name: 'search',
-    meta: { title: '搜索', icon: 'icon-users' }
+    meta: { title: '搜索', bg: '#F0F0F0' }
   },
   { path: '*', redirect: '/' }
 ]

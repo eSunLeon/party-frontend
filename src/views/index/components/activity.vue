@@ -5,34 +5,16 @@
       <span class="more" @click="$router.push('/activity/2')">查看更多</span>
     </div>
     <div class="activity-list">
-      <router-link class="activity-item" to="/my">
-        <div class="img"></div>
-        <div class="activity-name">湖畔郊游烧烤钓鱼活动</div>
+      <router-link v-for="(item, index) in list" :key="index" class="activity-item" :to="'/join/'+item.id">
+        <div class="img">
+          <img :src="item.mainImg" />
+        </div>
+        <div class="activity-name">{{item.title}}</div>
         <div class="activity-address">
-          <van-icon name="location"/>深圳龙岗区大鹏新城五零深圳龙岗区大鹏新城五零
+          <van-icon name="location"/>{{item.site}}
         </div>
         <div class="activity-time">
-          <van-icon name="clock"/>2019-04-12
-        </div>
-      </router-link>
-      <router-link class="activity-item" to="/my">
-        <div class="img"></div>
-        <div class="activity-name">湖畔郊游烧烤钓鱼活动</div>
-        <div class="activity-address">
-          <van-icon name="location"/>深圳龙岗区大鹏新城五零
-        </div>
-        <div class="activity-time">
-          <van-icon name="clock"/>2019-04-12
-        </div>
-      </router-link>
-      <router-link class="activity-item" to="/my">
-        <div class="img"></div>
-        <div class="activity-name">湖畔郊游烧烤钓鱼活动</div>
-        <div class="activity-address">
-          <van-icon name="location"/>深圳龙岗区大鹏新城五零
-        </div>
-        <div class="activity-time">
-          <van-icon name="clock"/>2019-04-12
+          <van-icon name="clock"/>{{item.activityTime | formatCustomDate('-')}}
         </div>
       </router-link>
     </div>
@@ -40,8 +22,28 @@
 </template>
 
 <script>
+import { activityList } from '@/api/activity'
 export default {
-  name: 'activity'
+  name: 'activity',
+  data() {
+    return {
+      list: [],
+      offset: 1,
+      limit: 20
+    }
+  },
+  created() {
+    this.queryList()
+  },
+  methods: {
+    queryList() {
+      activityList(2, -2).then(res => {
+        if (res.returnCode === '200') {
+          this.list = res.data
+        }
+      })
+    }
+  }
 }
 </script>
 
@@ -92,9 +94,13 @@ export default {
   }
   .img {
     height: 210 / @r;
-    background-color: #000;
     overflow: hidden;
     border-radius: 8 / @r;
+    img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
   }
   .activity-name {
     padding: 20 / @r 0 15 / @r;

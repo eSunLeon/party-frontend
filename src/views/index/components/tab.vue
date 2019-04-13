@@ -2,43 +2,81 @@
     <div class="tab">
       <van-row>
         <van-col span="12">
-          <div class="tab-title" :class="{'active': active === 1}" @click="active =1">社区资讯</div>
+          <div class="tab-title" :class="{'active': active === 1}" @click="queryActivity">社区资讯</div>
         </van-col>
         <van-col span="12">
-          <div class="tab-title" :class="{'active': active === 2}" @click="active =2">推荐活动</div>
+          <div class="tab-title" :class="{'active': active === 2}" @click="infoActivity">推荐活动</div>
         </van-col>
       </van-row>
-      <div class="list">
-        <div class="item">
-          <img src="../../../assets/img/banner.png" class="img"/>
+      <div class="list" v-if="active===1 && list.length > 0">
+        <router-link :to="'/information-detail/'+ item.id" class="item" v-for="(item, index) in list" :key="index">
+          <img :src="item.mainImg" class="img"/>
           <div class="detail">
-            小支部大作为 党建引领凝聚前进力量引
-            领凝聚前进力量
+            {{item.title}}
             <div class="bottom">
-              2019-03-11
+              {{item.createTime | formatCustomDateTime('-')}}
             </div>
           </div>
-        </div>
-        <div class="item">
-          <img src="../../../assets/img/banner.png" class="img"/>
+        </router-link>
+      </div>
+      <div class="list" v-if="active===2 && list.length > 0">
+        <router-link :to="'/join/'+ item.id" class="item" v-for="(item, index) in list" :key="index">
+          <img :src="item.mainImg" class="img"/>
           <div class="detail">
-            小支部大作为 党建引领凝聚前进力量引
-            领凝聚前进力量
+            {{item.title}}
             <div class="bottom">
-              2019-03-11
+              {{item.activityTime | formatCustomDateTime('-')}}
             </div>
           </div>
-        </div>
+        </router-link>
       </div>
     </div>
 </template>
 
 <script>
+    import { recommendActivity } from '@/api/activity'
+    import { infoList } from '@/api/information'
     export default {
       name: 'tab',
       data() {
         return {
-          active: 1
+          active: 1,
+          list: [],
+          offset: 1,
+          limit: 20
+        }
+      },
+      created() {
+        infoList(2).then(res => {
+          if (res.returnCode === '200') {
+            this.list = res.data.items
+          }
+        })
+      },
+      methods: {
+        queryActivity() {
+          if (this.active === 1) {
+            return
+          }
+          this.active = 1
+          this.list = []
+          infoList(2).then(res => {
+            if (res.returnCode === '200') {
+              this.list = res.data.items
+            }
+          })
+        },
+        infoActivity() {
+          if (this.active === 2) {
+            return
+          }
+          this.active = 2
+          this.list = []
+          recommendActivity(this.offset, this.limit).then(res => {
+            if (res.returnCode === '200') {
+              this.list = res.data
+            }
+          })
         }
       }
     }
@@ -67,6 +105,7 @@
   padding: 9/@r 20/@r 2px;
 }
 .item {
+  display: block;
   padding: 30/@r 0;
   padding-left: 278/@r;
   position: relative;

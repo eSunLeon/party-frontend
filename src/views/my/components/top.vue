@@ -10,10 +10,10 @@
       <img class="img" :src="info.headImg" v-if="info.headImg">
       <img class="img" src="../../../assets/img/touxiang.png" v-else>
       <div class="user-name">
-        吴优秀
+        {{info.name || '--'}}
       </div>
       <div class="user-level">
-        <div class="level">党委书记</div>
+        <div class="level">{{info.role || '--'}}</div>
       </div>
     </div>
     <div class="bottom">

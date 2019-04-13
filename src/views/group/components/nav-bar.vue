@@ -2,7 +2,7 @@
   <div class="tab-box">
     <router-link to="/information" class="tab-item">
       <img src="./img/zixun.png" class="icon"/>
-      <div>党群资讯</div>
+      <div>党建资讯</div>
     </router-link>
     <router-link to="/activity/1" class="tab-item">
       <img src="./img/huodong.png" class="icon"/>

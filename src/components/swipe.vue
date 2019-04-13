@@ -4,15 +4,15 @@
       <van-swipe-item>
         <img src="../assets/img/banner.png" class="swipe-item">
       </van-swipe-item>
-      <van-swipe-item>
-        <img src="../assets/img/banner.png" class="swipe-item">
-      </van-swipe-item>
-      <van-swipe-item>
-        <img src="../assets/img/banner.png" class="swipe-item">
-      </van-swipe-item>
-      <van-swipe-item>
-        <img src="../assets/img/banner.png" class="swipe-item">
-      </van-swipe-item>
+<!--      <van-swipe-item>-->
+<!--        <img src="../assets/img/banner.png" class="swipe-item">-->
+<!--      </van-swipe-item>-->
+<!--      <van-swipe-item>-->
+<!--        <img src="../assets/img/banner.png" class="swipe-item">-->
+<!--      </van-swipe-item>-->
+<!--      <van-swipe-item>-->
+<!--        <img src="../assets/img/banner.png" class="swipe-item">-->
+<!--      </van-swipe-item>-->
     </van-swipe>
   </div>
 </template>

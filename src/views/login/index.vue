@@ -58,6 +58,8 @@
                 this.time = 60
               }
             }, 1000)
+          } else {
+            this.$toast.fail('信息发送失败!')
           }
         }).catch(() => {
           this.$toast.fail('信息发送失败!')

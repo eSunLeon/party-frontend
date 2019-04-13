@@ -1,14 +1,26 @@
 <template>
   <div class="nav">
-    <input type="text" placeholder="输入关键字搜索活动" class="search">
-    <img src="./img/search.png" class="search-icon"/>
+    <input type="text" placeholder="输入关键字搜索活动" class="search" @keyup.enter="jump" v-model="name">
+    <img src="./img/search.png" class="search-icon" @click="jump"/>
     <img src="../../../assets/img/add.png" class="add" @click="$router.push('/create-activity')"/>
   </div>
 </template>
 
 <script>
   export default {
-    name: 'navHeader'
+    name: 'navHeader',
+    data() {
+      return {
+        name: ''
+      }
+    },
+    methods: {
+      jump() {
+        if (this.name) {
+          this.$router.push('/search?name=' + this.name)
+        }
+      }
+    }
   }
 </script>
 
@@ -41,6 +53,7 @@
     left: 61/@r;
     top: 29/@r;
     width: 36/@r;
+    cursor: pointer;
   }
 }
 </style>

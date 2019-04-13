@@ -51,6 +51,7 @@
           return
         }
         this.id = id
+        this.dataList = []
         this.queryList()
       },
       queryList() {

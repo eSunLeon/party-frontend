@@ -35,12 +35,13 @@
         <input class="input" placeholder="请输入费用金额" type="number" v-model="params.cost">
         <div class="yun">元</div>
       </div>
-      <div class="item person">
+      <div class="test">
         <div class="name">
-          负责人:
+          <div>负责人:</div>
           <input class="name-input" placeholder="请输入姓名" type="text" v-model="params.dutyName">
         </div>
         <div class="tel">
+          <img src="./img/mobile.png">
           <input class="tel-input" placeholder="请输入手机号码" type="number" v-model="params.dutyPhone">
         </div>
       </div>
@@ -68,7 +69,7 @@
         :min-date="minStartDate"
         @cancel="cancel"
         @confirm="confirmStart"
-        title="开始日期"
+        title="活动开始日期"
         type="date"
         v-model="startDate"
       />
@@ -79,7 +80,7 @@
         :min-date="minStartDate"
         @cancel="cancel"
         @confirm="confirmEnd"
-        title="结束日期"
+        title="报名截止日期"
         type="date"
         v-model="endDate"
       />
@@ -104,7 +105,7 @@
 
 <script>
 import headerNav from '@/components/header'
-import { uploadImg, createActivity, activityList } from '@/api/activity'
+import { uploadImg, createActivity, activityTypeList } from '@/api/activity'
 export default {
   name: 'createActivity',
   components: {
@@ -120,8 +121,9 @@ export default {
       selectShow: false,
       selectValue: '',
       activityClass: {
-        党内: [],
-        公开: []
+        '党建': [],
+        '社区': [],
+        '通知': []
       },
       columns: [],
       params: {
@@ -145,29 +147,37 @@ export default {
     }
   },
   created() {
-    activityList(1).then(res => {
+    activityTypeList(1).then(res => {
       if (res.returnCode === '200') {
         for (let j = 0; j < res.data.length; j++) {
           res.data[j].text = res.data[j].name
         }
-        this.activityClass['党内'] = [...res.data]
-        activityList(2).then(res => {
+        this.activityClass['党建'] = [...res.data]
+        activityTypeList(2).then(res => {
           if (res.returnCode === '200') {
             for (let j = 0; j < res.data.length; j++) {
               res.data[j].text = res.data[j].name
             }
-            this.activityClass['公开'] = [...res.data]
-            var test = [
-              {
-                values: Object.keys(this.activityClass),
-                className: 'column1'
-              },
-              {
-                values: this.activityClass['党内'],
-                className: 'column2'
+            this.activityClass['社区'] = [...res.data]
+            activityTypeList(3).then(res => {
+              if (res.returnCode === '200') {
+                for (let j = 0; j < res.data.length; j++) {
+                  res.data[j].text = res.data[j].name
+                }
+                this.activityClass['通知'] = [...res.data]
+                var test = [
+                  {
+                    values: Object.keys(this.activityClass),
+                    className: 'column1'
+                  },
+                  {
+                    values: this.activityClass['党内'],
+                    className: 'column2'
+                  }
+                ]
+                this.columns = test
               }
-            ]
-            this.columns = test
+            })
           }
         })
       }
@@ -210,7 +220,10 @@ export default {
       formData.append('file', file)
       uploadImg(formData).then(res => {
         if (res.returnCode === '200') {
-          this.$toast.success('图片上传成功!')
+          this.$toast.success({
+            message: '图片上传成功!',
+            duration: 1500
+          })
           this.params.mainImg = res.data.imgUrl
         }
       }).catch(() => {
@@ -255,7 +268,10 @@ export default {
       }
       createActivity(this.params).then(res => {
         if (res.returnCode === '200') {
-          this.$toast.success('创建成功!')
+          this.$toast.success({
+            message: '创建成功!',
+            duration: 1500
+          })
           this.selectValue = null
           this.params = {
             title: '',
@@ -446,15 +462,17 @@ export default {
 }
 .person {
   padding: 13 / @r 20 / @r;
+  height: 68/@r;
   font-size: 0;
   margin-bottom: 10 / @r;
   .name {
-    display: inline-block;
+    position: absolute;
+    top: 13/@r;
+    left: 20/@r;
+    width: 306/@r;
     height: 42 / @r;
     line-height: 42 / @r;
     font-size: 28 / @r;
-    position: relative;
-    width: 286 / @r;
     border-right: 1 / @r solid #cccccc;
     overflow: hidden;
   }
@@ -471,8 +489,9 @@ export default {
     color: #212121;
   }
   .tel {
-    position: relative;
-    display: inline-block;
+    position: absolute;
+    top: 13/@r;
+    left: 329/@r;
     height: 42 / @r;
     line-height: 42 / @r;
     width: 375 / @r;
@@ -490,6 +509,54 @@ export default {
     font-size: 26 / @r;
     border: none;
     color: #212121;
+  }
+}
+.test {
+  padding: 13/@r 20/@r;
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: flex;
+  height: 68/@r;
+  margin-bottom: 10 / @r;
+  font-size: 28/@r;
+  color: #666;
+  background-color: #fff;
+  border-radius: 10 / @r;
+  .name{
+    width: 286/@r;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    height: 42/@r;
+    -webkit-align-items: center;
+    align-items: center;
+    border-right: 1/@r solid #cccccc;
+    overflow: hidden;
+    div {
+      width: 116/@r;
+    }
+    input{
+      width: 168/@r;
+      border: none;
+    }
+  }
+  .tel {
+    width: 370/@r;
+    height: 42/@r;
+    display: -webkit-box;
+    display: -webkit-flex;
+    display: flex;
+    -webkit-align-items: center;
+    align-items: center;
+    padding-left: 20/@r;
+    img {
+      height: 32/@r;
+    }
+    input {
+      padding-left: 20/@r;
+      width: 300/@r;
+      border: none;
+    }
   }
 }
 .select {
@@ -517,7 +584,7 @@ export default {
   color: #666;
   .label {
     padding-top: 4 / @r;
-    width: 166 / @r;
+    width: 146 / @r;
     max-width: 166 / @r;
     font-size: 26 / @r;
   }

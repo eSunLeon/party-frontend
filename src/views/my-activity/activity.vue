@@ -13,13 +13,13 @@
      <div class="bar" :class="{'active': active === -2}" @click="queryList(-2)">
        全部
      </div>
-     <div class="bar" :class="{'active': active === -1}" @click="queryList(-1)">
+     <div class="bar" :class="{'active': active === 0}" @click="queryList(0)">
        待审核
      </div>
      <div class="bar" :class="{'active': active === 1}" @click="queryList(1)">
        已通过
      </div>
-     <div class="bar" :class="{'active': active === 0}" @click="queryList(0)">
+     <div class="bar" :class="{'active': active === -1}" @click="queryList(-1)">
        未通过
      </div>
      <div class="bar" :class="{'active': active === 2}" @click="queryList(2)">
@@ -40,13 +40,13 @@
         已结束
       </div>
     </div>
-    <div class="list" v-for="(item, index) in list" :key="index">
-      <div class="item">
+    <div class="list">
+      <router-link  :to="'/join/'+ item.id" class="item" v-for="(item, index) in list" :key="index">
         <img :src="item.mainImg"/>
         <div class="bottom">
           {{item.title}}
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>

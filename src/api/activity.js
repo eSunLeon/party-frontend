@@ -13,6 +13,24 @@ export function createActivity(params) {
 }
 
 /**
+ *  推荐活动
+ */
+export function recommendActivity(page, size) {
+  return request({
+    method: 'get',
+    url: `/dj/activity/recommend?offset=${page}&limit=${size}`
+  })
+}
+/**
+ *  热门活动
+ */
+export function hotActivity(page, size) {
+  return request({
+    method: 'get',
+    url: `/dj/activity/hot?offset=${page}&limit=${size}`
+  })
+}
+/**
  * 上传图片
  */
 export function uploadImg(params) {
@@ -36,15 +54,33 @@ export function activityDetail(id) {
   })
 }
 /**
- *  活动类型列表
- * @param id
+ *  活动列表
  */
-export function activityList(type) {
+export function activityList(type, state) {
+  return request({
+    method: 'get',
+    url: `/dj/activity/list/${type}/${state}`
+  })
+}
+/**
+ *  搜索活动列表
+ */
+export function searchActivityList(type, name) {
+  return request({
+    method: 'get',
+    url: `/dj/activity/list/${type}/-2?name=${name}`
+  })
+}
+/**
+ *  活动类型类型
+ */
+export function activityTypeList(type) {
   return request({
     method: 'get',
     url: '/dj/activity/types/' + type
   })
 }
+
 export function joinActivity(params) {
   return request({
     method: 'post',

@@ -2,35 +2,52 @@
   <div>
     <header-nav title="活动通知"></header-nav>
     <div class="list">
-      <div class="item">
+      <router-link :to="'/join/'+ item.id" class="item" v-for="(item, index) in list" :key="index">
         <div class="header">
           <div class="title">
-            志愿服务，靓丽你我他s
+            {{item.title}}
           </div>
-          <div class="time">2019-03-11 09:10</div>
+          <div class="time">{{item.activityTime | formatCustomDateTime('-')}}</div>
         </div>
         <div class="banner">
-          <img src="../../assets/img/banner.png"/>
+          <img :src="item.mainImg"/>
         </div>
         <div class="address">
           <img src="./img/location.png" class="address-icon">
-          福州市闽侯县溪源宫路福州大学(旗山校区)
+          {{item.site}}
         </div>
         <div class="detail">
           活动详情
           <img src="../../assets/img/more.png" class="more-icon"/>
         </div>
-      </div>
+      </router-link>
     </div>
   </div>
 </template>
 <script>
   import headerNav from '@/components/header'
-
+  import { activityList } from '@/api/activity'
   export default {
     name: 'activity',
     components: {
       headerNav
+    },
+    data() {
+      return {
+        list: []
+      }
+    },
+    created() {
+      this.queryList()
+    },
+    methods: {
+      queryList() {
+        activityList(3, -2).then(res => {
+          if (res.returnCode === '200') {
+            this.list = res.data
+          }
+        })
+      }
     }
   }
 </script>
@@ -40,6 +57,7 @@
     padding: 40/@r 20/@r 0;
   }
   .item {
+    display: block;
     background-color: #fff;
     border-radius: 8/@r;
     height: 582/@r;

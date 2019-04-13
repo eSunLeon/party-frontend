@@ -1,12 +1,16 @@
 import Vue from 'vue'
 import Vant from 'vant'
 import '@/assets/css/index.css'
-import 'babel-polyfill'
+
 import App from './App'
+import 'babel-polyfill'
+import promise from 'es6-promise'
+promise.polyfill()
 import router from './router'
 import store from './store'
 import './permission' // permission control
 import * as filters from './filters'
+
 function mJudge() {
   var html = document.documentElement
   var hWidth = html.getBoundingClientRect().width

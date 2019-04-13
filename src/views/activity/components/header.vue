@@ -1,6 +1,6 @@
 <template>
     <div class="header">
-      党建活动
+      {{content[sign]}}
       <div class="back" @click="$router.back()">
         <img src="../../../assets/img/back.png" class="icon">
       </div>
@@ -10,7 +10,13 @@
 
 <script>
   export default {
-    name: 'headerNav'
+    name: 'headerNav',
+    props: ['sign'],
+    data() {
+      return {
+        content: ['', '党建活动', '社区活动']
+      }
+    }
   }
 </script>
 

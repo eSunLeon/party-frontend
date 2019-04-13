@@ -1,18 +1,11 @@
 <template>
   <div>
-    <header-nav></header-nav>
+    <header-nav :sign="type"></header-nav>
     <div class="list">
-      <router-link to="/join" class="item">
-        <img src="../../assets/img/banner.png"/>
+      <router-link v-for="(item,index) in list" :key="index" :to="'/join/'+ item.id" class="item">
+        <img :src="item.mainImg"/>
         <div class="bottom">
-          福大志愿义诊活动福大志愿义诊活动
-          <button class="btn">立即参加</button>
-        </div>
-      </router-link>
-      <router-link to="/join" class="item">
-        <img src="../../assets/img/banner.png"/>
-        <div class="bottom">
-          福大志愿义诊活动福大志愿义诊活动
+          {{item.title}}
           <button class="btn">立即参加</button>
         </div>
       </router-link>
@@ -21,6 +14,7 @@
 </template>
 <script>
   import headerNav from './components/header'
+  import { activityList } from '@/api/activity'
   export default {
     name: 'activity',
     components: {
@@ -38,11 +32,11 @@
     },
     methods: {
       queryList() {
-        // activityList(this.type).then(res => {
-        //   if (res.returnCode === '200') {
-        //     this.list = res.data.items
-        //   }
-        // })
+        activityList(this.type, -2).then(res => {
+          if (res.returnCode === '200') {
+            this.list = res.data
+          }
+        })
       }
     }
   }

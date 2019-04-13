@@ -1,79 +1,54 @@
 <template>
   <div class="join">
     <header-nav></header-nav>
-    <img class="banner" src="../../assets/img/banner.png">
+    <img class="banner" :src="activityParams.mainImg">
     <div class="form">
-      <div class="title">福大志愿义诊活动福大志愿义诊活动</div>
+      <div class="title">{{activityParams.title}}</div>
       <div class="item">
         <img class="icon-20" src="./img/shijian.png">
         <span class="color-666">报名截止：</span>
-        <span class="start">2019.03.02</span>
+        <span class="start">{{activityParams.createdTime | formatCustomDate('.')}}</span>
         至
-        <span class="end">2019.03.04</span>
+        <span class="end">{{activityParams.signEndTime | formatCustomDate('.')}}</span>
       </div>
       <div class="item">
         <img class="icon-20" src="./img/dizhi.png">
-        福州市闽侯县溪源宫路福州大学(旗山校区)
+        {{activityParams.site}}
       </div>
-      <div class="item">
-        <img class="icon-22" src="./img/faqi.png">
-        福中医中医学院青年志愿者协会
-      </div>
+<!--      <div class="item">-->
+<!--        <img class="icon-22" src="./img/faqi.png">-->
+<!--        福中医中医学院青年志愿者协会-->
+<!--      </div>-->
       <div class="item">
         <img class="icon-20" src="./img/renwu.png">
         <span class="color-666">联系人：</span>
-        <span class="color-1a">马小跳</span>
+        <span class="color-1a">{{activityParams.dutyName}}</span>
       </div>
       <div class="item">
         <img class="icon-20" src="./img/mobile.png">
         <span class="color-666">联系方式：</span>
-        <span class="color-FF7607">158 9987 8598</span>
-      </div>
+        <span class="color-FF7607">{{activityParams.dutyPhone}}</span>
+    </div>
       <div class="item">
         <img class="icon-26" src="./img/xiangqing.png">
         <span class="color-666">活动详情：</span>
       </div>
-      <div
-        class="detail"
-      >此次义诊活动为青协与医研合办，意在趁雷锋月学习之余，给大学生进行义诊实践。志愿者的主要工作为现场秩序的维持，以及义诊的工作。注意维护义诊点周围的卫生。</div>
+      <div class="detail">{{activityParams.details}}</div>
       <div class="item">
         <img class="icon-30" src="./img/canyu.png">
         <span class="color-666">活动参与人:</span>
       </div>
       <div class="uers">
-        <div class="user-img">
-          <img src="./img/touxiang.png">
+        <div class="user-img" v-for="(item, index) in activityParams.joins" :key="index">
+          <img :src="item.userHeadImg" v-if="item.userHeadImg">
+          <img src="./img/touxiang.png" v-else>
         </div>
-        <div class="user-img">
-          <img src="./img/touxiang.png">
-        </div>
-        <div class="user-img">
-          <img src="./img/touxiang.png">
-        </div>
-        <div class="user-img">
-          <img src="./img/touxiang.png">
-        </div>
-        <div class="user-img">
-          <img src="./img/touxiang.png">
-        </div>
-        <div class="user-img">
-          <img src="./img/touxiang.png">
-        </div>
-        <div class="user-img">
-          <img src="./img/touxiang.png">
-        </div>
-        <div class="user-img">
-          <img src="./img/touxiang.png">
-        </div>
-        <div class="user-img">
-          <img src="./img/touxiang.png">
-        </div>
-        <div class="user-img">
-          <img src="./img/touxiang.png">
-        </div>
+<!--        <div class="user-img">-->
+<!--          <img src="./img/touxiang.png">-->
+<!--        </div>-->
       </div>
     </div>
-    <div @click id="join">
+    <div @click="join" id="join">
       <div class="join-icon">
         <img class="icon-30" src="./img/canjia.png">
         立即参加
@@ -97,7 +72,9 @@ export default {
   },
   created() {
     activityDetail(this.$route.params.id).then(res => {
-      console.log(res)
+      if (res.returnCode === '200') {
+        this.activityParams = res.data
+      }
     })
   },
   methods: {
@@ -107,7 +84,10 @@ export default {
       })
         .then(res => {
           if (res.returnCode === '200') {
-            this.$toast.success('参加成功!')
+            this.$toast.success({
+              message: '参加成功!',
+              duration: 1500
+            })
           }
         })
         .catch(() => {
@@ -124,6 +104,7 @@ export default {
   display: block;
   width: 100%;
   height: 338 / @r;
+  background-color: #fff;
 }
 
 .join {
@@ -203,6 +184,7 @@ export default {
   padding-left: 30 / @r;
   padding-bottom: 1 / @r;
   font-size: 0;
+  min-height: 100/@r;
   .user-img {
     display: inline-block;
     width: 100 / @r;
@@ -248,6 +230,7 @@ export default {
     padding-top: 10 / @r;
     padding-bottom: 10 / @r;
     padding-left: 50 / @r;
+    cursor: pointer;
   }
 }
 </style>
