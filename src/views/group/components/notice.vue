@@ -36,6 +36,7 @@ export default {
   white-space: nowrap;
   overflow: hidden;
   margin-bottom: 18 / @r;
+  min-height: 70/@r;
   .left {
     position: absolute;
     left: 40 / @r;

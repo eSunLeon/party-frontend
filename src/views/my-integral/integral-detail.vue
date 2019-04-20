@@ -4,8 +4,8 @@
     <div class="list">
       <div class="item" v-for="(item, index) in integral" :key="index">
 <!--        <img src="./img/wenzhang.png"/>-->
-        {{item}}
-        <div class="fen">+ {{item}}分</div>
+        {{item.title}}
+        <div class="fen">+ {{item.award}}分</div>
       </div>
     </div>
   </div>

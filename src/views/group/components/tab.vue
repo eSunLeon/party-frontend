@@ -39,7 +39,7 @@
           <div class="detail">
             {{item.title}}
             <div class="bottom">
-              {{item.createTime | formatCustomDate('-')}}
+              {{item.createTime * 1000 | formatCustomDate('-')}}
               <div class="number">
                 <img class="view-icon" src="../../../assets/img/view.png"/>
                 {{item.readTotal}}
@@ -146,6 +146,7 @@
     position: absolute;
     top: 30/@r;
     left: -1/@r;
+    border-radius: 8/@r;
   }
   .detail {
     padding-top: 14/@r;

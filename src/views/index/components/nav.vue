@@ -34,7 +34,8 @@
   background-color: #DF3031;
   .search {
     display: block;
-    height: 54/@r;
+    padding-top: 14/@r;
+    padding-bottom: 14/@r;
     width: 570/@r;
     font-size: 22/@r;
     border-radius: 27/@r;

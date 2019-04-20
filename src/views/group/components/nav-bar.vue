@@ -8,11 +8,11 @@
       <img src="./img/huodong.png" class="icon"/>
       <div>党建活动</div>
     </router-link>
-    <a href="#" class="tab-item">
+    <a href="http://www.moe.gov.cn" class="tab-item">
       <img src="./img/zhuanti.png" class="icon"/>
       <div>专题教育</div>
     </a>
-    <a  href="#" class="tab-item">
+    <a  href="http://www.fjvs.org/" class="tab-item">
       <img src="./img/zhiyuanzhe.png" class="icon"/>
       <div>志愿者申请</div>
     </a>

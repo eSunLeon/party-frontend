@@ -5,7 +5,7 @@
       {{content.title}}
     </div>
     <div class="time">
-      发布时间：{{content.createTime | formatCustomDate('-')}}
+      发布时间：{{content.createTime * 1000 | formatCustomDate('-')}}
       <div class="view">
         <img src="../../assets/img/view.png" class="view-icon"/>
         {{content.readTotal}}

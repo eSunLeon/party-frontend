@@ -59,6 +59,7 @@
       right: 0;
       width: 220/@r;
       height: 158/@r;
+      border-radius: 8/@r;
     }
   }
   .text {

@@ -12,7 +12,7 @@
         {{item.title}}
         <img :src="item.mainImg" class="src"/>
         <div class="time">
-          {{item.createTime | formatCustomDate('-')}}
+          {{item.createTime * 1000 | formatCustomDate('-')}}
           <div class="view">
             <img class="view-icon" src="../../assets/img/view.png"/>{{item.readTotal}}
           </div>
@@ -110,6 +110,7 @@
     right: -1/@r;
     width: 220/@r;
     height: 158/@r;
+    border-radius: 8/@r;
   }
   .time {
     color: #666;

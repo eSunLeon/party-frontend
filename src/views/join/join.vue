@@ -7,7 +7,7 @@
       <div class="item">
         <img class="icon-20" src="./img/shijian.png">
         <span class="color-666">报名截止：</span>
-        <span class="start">{{activityParams.createdTime | formatCustomDate('.')}}</span>
+        <span class="start">{{activityParams.createdTime * 1000 | formatCustomDate('.')}}</span>
         至
         <span class="end">{{activityParams.signEndTime | formatCustomDate('.')}}</span>
       </div>

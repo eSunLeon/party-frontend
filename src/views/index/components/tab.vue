@@ -14,7 +14,7 @@
           <div class="detail">
             {{item.title}}
             <div class="bottom">
-              {{item.createTime | formatCustomDateTime('-')}}
+              {{item.createTime * 1000 | formatCustomDateTime('-')}}
             </div>
           </div>
         </router-link>
@@ -120,6 +120,7 @@
   position: absolute;
   top: 30/@r;
   left: -1/@r;
+  border-radius: 8/@r;
 }
 .detail {
   padding-top: 14/@r;
