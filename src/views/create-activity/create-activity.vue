@@ -201,9 +201,10 @@ export default {
       this.selectShow = false
     },
     selectConfirm(value) {
-      if (value[0] === '公开') {
+      console.log(value)
+      if (value[0] === '社区') {
         this.params.activityClass = 2
-      } else {
+      } else if (value[0] === '党建'){
         this.params.activityClass = 1
       }
       this.params.activityType = value[1].id

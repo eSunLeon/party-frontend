@@ -48,10 +48,15 @@
 <!--        </div>-->
       </div>
     </div>
-    <div @click="join" id="join">
+    <div @click="join" id="no_join" v-if="activityParams.is_join==0">
       <div class="join-icon">
         <img class="icon-30" src="./img/canjia.png">
-        立即参加
+        立即报名
+      </div>
+    </div>
+    <div @click="join" id="join" v-else>
+      <div class="join-icon ">
+        已报名
       </div>
     </div>
   </div>
@@ -200,7 +205,7 @@ export default {
     }
   }
 }
-#join {
+#join,#no_join{
   position: fixed;
   left: 0;
   right: 0;

@@ -12,8 +12,8 @@
       </div>
     </div>
     <div class="border"></div>
-    <div class="content">
-      {{content.content}}
+    <div class="content" v-html="content.content">
+      <!-- {{content.content}} 有标签-->
     </div>
   </div>
 </template>

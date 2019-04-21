@@ -11,6 +11,13 @@ import store from './store'
 import './permission' // permission control
 import * as filters from './filters'
 
+import VConsole from 'vconsole'
+
+// if (process.env.NODE_ENV == "development") {
+new VConsole()
+// }
+
+
 function mJudge() {
   var html = document.documentElement
   var hWidth = html.getBoundingClientRect().width

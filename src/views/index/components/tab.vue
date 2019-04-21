@@ -128,7 +128,8 @@
   font-size: 26/@r;
   color: #1a1a1a;
   position: relative;
-  line-height: 36/@r;
+  line-height: 80/@r;
+  
 }
 .bottom {
   position: absolute;
