@@ -12,13 +12,15 @@ export default {
   name: 'notice',
   data() {
     return {
-      publicNew: {}
+      publicNew: {
+        title:''
+      }
     }
   },
   created() {
     publicList().then(res => {
       if (res.returnCode === '200') {
-        this.publicNew = res.data[0]
+        this.publicNew = res.data.length && res.data[0] 
       }
     })
   }

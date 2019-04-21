@@ -8,7 +8,7 @@
           活动通知
           <div class="time">2019-03-11</div>
         </div>
-        <div class="item-text">"两学一做"学习教育。指的是要好好学习等。"两学一做"学习教育。指的是要好好学习等。</div>
+        <!-- <div class="item-text">"两学一做"学习教育。指的是要好好学习等。"两学一做"学习教育。指的是要好好学习等。</div> -->
       </router-link>
       <router-link class="item" to="/notice/inner-party">
         <img src="./img/tongbao.png">
@@ -41,7 +41,8 @@ export default {
   data() {
     return {
       publicNew: {},
-      innerPartyNew: {}
+      innerPartyNew: {
+      }
     }
   },
   created() {
@@ -52,7 +53,7 @@ export default {
     })
     innerPartyList().then(res => {
       if (res.returnCode === '200') {
-        this.innerPartyNew = res.data[0]
+        this.innerPartyNew = res.data.length && res.data[0]
       }
     })
   }

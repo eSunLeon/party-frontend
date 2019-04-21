@@ -103,6 +103,9 @@
 //   return (+num || 0).toString().replace(/^-?\d+/g, m => m.replace(/(?=(?!\b)(\d{3})+$)/g, ','))
 // }
 export function formatCustomDate(times, option) {
+  if(!times){
+    return ''
+  }
   // console.log(times)
   var time = new Date(times)
   const y = time.getFullYear()
@@ -117,6 +120,9 @@ export function formatCustomDate(times, option) {
   return y + option + zero(m) + option + zero(d)
 }
 export function formatCustomDateTime(times, option) {
+  if(!times){
+    return ''
+  }
   // console.log(times)
   var time = new Date(times)
   const y = time.getFullYear()

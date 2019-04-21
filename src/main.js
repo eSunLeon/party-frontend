@@ -13,9 +13,9 @@ import * as filters from './filters'
 
 import VConsole from 'vconsole'
 
-// if (process.env.NODE_ENV == "development") {
-new VConsole()
-// }
+if (process.env.NODE_ENV == "development") {
+  new VConsole()
+}
 
 
 function mJudge() {
