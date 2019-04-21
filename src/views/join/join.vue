@@ -54,7 +54,7 @@
         立即报名
       </div>
     </div>
-    <div @click="join" id="join" v-else>
+    <div id="join" v-else>
       <div class="join-icon ">
         已报名
       </div>
@@ -88,11 +88,17 @@ export default {
         activityId: this.$route.params.id
       })
         .then(res => {
+          console.log(res)
           if (res.returnCode === '200') {
-            this.$toast.success({
-              message: '参加成功!',
-              duration: 1500
-            })
+            if(res.data.state == 1){
+              this.$toast.success({
+                message: '参加成功!',
+                duration: 1500
+              })
+              this.activityParams.is_join = 1
+            }else{
+              this.$toast.fail('参加失败!')
+            }
           }
         })
         .catch(() => {
@@ -237,5 +243,8 @@ export default {
     padding-left: 50 / @r;
     cursor: pointer;
   }
+}
+#join{
+  background: #999;
 }
 </style>
