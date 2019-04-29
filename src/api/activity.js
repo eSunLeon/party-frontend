@@ -89,6 +89,16 @@ export function joinActivity(params) {
   })
 }
 
+//查看活动参与人列表信息
+export function joinMemberList(params) {
+	console.log(123)
+//return request({
+//  method: 'get',
+//  url: '/dj/activity/join',
+//  data: params
+//})
+}
+
 /**
  * 我的活动
  * @param state

@@ -59,3 +59,9 @@
     }
   }
 </script>
+
+<style scoped="scoped" lang="scss">
+	.van-tabbar-item__icon img {
+		height: 1rem;
+	}
+</style>

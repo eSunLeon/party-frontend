@@ -8,7 +8,7 @@
         </div>
         <img :src="item.mainImg" class="banner">
         <div class="time">
-          {{item.createdTime | formatCustomDate('-')}}
+          {{item.createdTime * 1000 | formatCustomDate('-')}}
 <!--          <div class="number">-->
 <!--            <img src="../../assets/img/view.png" class="view-icon">-->
 <!--            324-->

@@ -36,17 +36,33 @@
       <div class="detail">{{activityParams.details}}</div>
       <div class="item">
         <img class="icon-30" src="./img/canyu.png">
-        <span class="color-666">活动参与人:</span>
+        <span class="color-666">活动参与人: ({{ joinMemberNum }}人)</span>
       </div>
-      <div class="uers">
+      <div class="uers" v-if="activityParams.dutyPhone == userData.phone">
         <div class="user-img" v-for="(item, index) in activityParams.joins" :key="index">
           <img :src="item.userHeadImg" v-if="item.userHeadImg">
           <img src="./img/touxiang.png" v-else>
         </div>
+      	<a href="javascript:;" @click="showMoreFn">查看列表</a>
 <!--        <div class="user-img">-->
 <!--          <img src="./img/touxiang.png">-->
 <!--        </div>-->
       </div>
+      <div class="uers" v-else>
+        <div class="user-img" v-for="(item, index) in activityParams.joins" :key="index">
+          <img :src="item.userHeadImg" v-if="item.userHeadImg">
+          <img src="./img/touxiang.png" v-else>
+        </div>
+      </div>
+		  <van-popup
+      :close-on-click-overlay="true"
+      position="right"
+      v-model="showJoinMemberList"
+    >
+    	<van-cell-group title="活动联系人">
+			  <van-cell :title="item.name" v-for="item in joinMemeberData"  :value="item.phone" />
+			</van-cell-group>
+    </van-popup>
     </div>
     <div @click="join" id="no_join" v-if="activityParams.is_join==0">
       <div class="join-icon">
@@ -64,7 +80,7 @@
 
 <script>
 import headerNav from './components/header'
-import { activityDetail, joinActivity } from '@/api/activity'
+import { activityDetail, joinActivity, joinMemberList } from '@/api/activity'
 export default {
   name: 'join',
   components: {
@@ -72,23 +88,44 @@ export default {
   },
   data() {
     return {
-      activityParams: {}
+      activityParams: {},
+      userData: {},
+      showJoinMember: false,
+      joinMemeberData: [{
+      	name: "kzf",
+      	phone: 123123123213,
+      }, {
+      	name: "kzf",
+      	phone: 123123123213,
+      }],
+      joinMemberNum: 0,
+      showJoinMemberList: false,
     }
   },
   created() {
     activityDetail(this.$route.params.id).then(res => {
       if (res.returnCode === '200') {
         this.activityParams = res.data
+        if(JSON.parse(localStorage.getItem('user'))) {
+        	this.userData = JSON.parse(localStorage.getItem('user'))
+    			this.joinMemberNum = this.activityParams.joins.length
+        }
       }
     })
   },
   methods: {
+  	showMoreFn() {
+  		joinMemberList()
+  		this.showJoinMemberList = true
+  	},
+  	
+  	onClose() {},
+  	
     join() {
       joinActivity({
         activityId: this.$route.params.id
       })
         .then(res => {
-          console.log(res)
           if (res.returnCode === '200') {
             if(res.data.state == 1){
               this.$toast.success({
@@ -196,6 +233,7 @@ export default {
   padding-bottom: 1 / @r;
   font-size: 0;
   min-height: 100/@r;
+		
   .user-img {
     display: inline-block;
     width: 100 / @r;
@@ -205,11 +243,24 @@ export default {
     overflow: hidden;
     margin-bottom: 10 / @r;
     img {
-      display: block;
+      display: inline-block;
       width: 100%;
       height: 100%;
+      overflow: hidden;
     }
   }
+    
+	a {
+		display: inline-block;
+		font-size: 30 / @r;
+		color: #ff3b3c;
+		width: 150 / @r;
+	  height: 100%;
+	  overflow: hidden;
+	  margin-left: 10 / @r;
+	  margin-bottom: 10 / @r;
+	  line-height: 100 / @r;
+	}
 }
 #join,#no_join{
   position: fixed;
@@ -246,5 +297,11 @@ export default {
 }
 #join{
   background: #999;
+}
+
+.van-popup--right {
+	left: 0;
+	width: 90%;
+	margin-left: 5%;
 }
 </style>

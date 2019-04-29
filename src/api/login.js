@@ -5,10 +5,10 @@ export function sendPhone(phone) {
     url: `/public/sendmsg/${phone}/1`
   })
 }
-export function login(phone, msg) {
+export function login(phone) {
   return request({
     method: 'post',
-    url: `/public/login/${phone}/${msg}`
+    url: `/public/login/${phone}`
   })
 }
 export function logout(phone) {

@@ -1,7 +1,7 @@
 <template>
     <div>
       <header-nav title="日常任务"></header-nav>
-      <div class="list">
+      <!--<div class="list">
         <div class="item">
           <img src="./img/wenzhang.png"/>
           认真阅读文章
@@ -12,7 +12,7 @@
           发布活动
           <div class="fen">领 98分</div>
         </div>
-      </div>
+      </div>-->
     </div>
 </template>
 <script>

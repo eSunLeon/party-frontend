@@ -22,7 +22,7 @@
         <img src="./img/gongshi.png">
         <div class="item-title">
           公示公告
-          <div class="time">{{publicNew.downTime | formatCustomDate('-')}}</div>
+          <div class="time">{{publicNew.downTime * 1000 | formatCustomDate('-')}}</div>
         </div>
         <div class="item-text">{{publicNew.title}}</div>
       </router-link>

@@ -106,6 +106,9 @@ export default {
     padding: 20 / @r 0 15 / @r;
     font-size: 28 / @r;
     color: #1a1a1a;
+    overflow: hidden;
+    width: 330 / @r;
+    text-overflow: ellipsis;
   }
   .activity-address,
   .activity-time {

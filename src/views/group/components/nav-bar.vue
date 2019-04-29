@@ -8,7 +8,7 @@
       <img src="./img/huodong.png" class="icon"/>
       <div>党建活动</div>
     </router-link>
-    <a href="http://www.moe.gov.cn" class="tab-item">
+    <a href="https://www.xuexi.cn/" class="tab-item">
       <img src="./img/zhuanti.png" class="icon"/>
       <div>专题教育</div>
     </a>

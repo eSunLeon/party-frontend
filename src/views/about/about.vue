@@ -1,8 +1,10 @@
 <template>
   <div>
     <header-nav title="关于"></header-nav>
-    <div class="img">
-      <img src="./img/tubiao.png"/>
+    <div class="desc">
+      <img src="./img/tubiao01.png"/>
+      <p class="company">中国电子科技集团有限公司</p>
+      <a href="http://www.cetc.com.cn/" target="_blank" class="url">http://www.cetc.com.cn/</a>
     </div>
     <div class="version">
       版本号
@@ -22,13 +24,26 @@
 </script>
 <style lang="less" scoped>
   @r:50rem;
-  .img {
+  .desc {
     height: 521/@r;
     line-height: 520/@r;
     text-align: center;
     background-color: #fff;
+    position: relative;
     img {
       width: 148/@r;
+    }
+    .company, .url {
+    	display: inline-block;
+    	position: absolute;
+    	left: 0;
+    	right: 0;
+    	top: 60%;
+    	font-size: 40 / @r;
+    }
+    
+    .url {
+    	top: 70%;
     }
   }
   .version {

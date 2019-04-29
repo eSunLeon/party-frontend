@@ -2,10 +2,9 @@
   <div>
     <header-nav></header-nav>
     <div class="title">{{publicDetail.title}}</div>
-    <div class="time">{{publicDetail.downTime | formatCustomDateTime('-')}}</div>
+    <div class="time">{{publicDetail.downTime * 1000 | formatCustomDateTime('-')}}</div>
     <div class="border"></div>
-    <div class="content">
-      {{detail.content}}
+    <div class="content" v-html="detail.content">
     </div>
   </div>
 </template>

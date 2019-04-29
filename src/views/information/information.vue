@@ -67,22 +67,18 @@
 <style lang="less" scoped>
   @r: 50rem;
   .tab-bar {
-    display: -webkit-box;
-    display: -webkit-flex;
-    display: flex;
     font-size: 26 / @r;
-    overflow-y: hidden;
-    overflow-x: auto;
+    width: 100%;
+    overflow: scroll;
     white-space: nowrap;
     background:rgba(240,240,240,1);
-    -webkit-box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
-    box-shadow:0px 1/@r 0px 0px rgba(230,230,230,1);
     &::-webkit-scrollbar {
       display: none;
     }
     .tab {
       padding: 22/@r 20/@r;
-      color: #222;
+ 		display: inline-block;
+      text-align: center;
     }
     .active {
       color: #F24040;

@@ -2,10 +2,10 @@
     <div class="tab">
       <van-row>
         <van-col span="12">
-          <div class="tab-title" :class="{'active': active === 1}" @click="queryActivity">社区资讯</div>
+          <div class="tab-title" :class="{'active': active === 2}" @click="infoActivity">推荐活动</div>
         </van-col>
         <van-col span="12">
-          <div class="tab-title" :class="{'active': active === 2}" @click="infoActivity">推荐活动</div>
+          <div class="tab-title" :class="{'active': active === 1}" @click="queryActivity">社区资讯</div>
         </van-col>
       </van-row>
       <div class="list" v-if="active===1 && list.length > 0">
@@ -40,18 +40,18 @@
       name: 'tab',
       data() {
         return {
-          active: 1,
+          active: 2,
           list: [],
           offset: 1,
           limit: 20
         }
       },
       created() {
-        infoList(2).then(res => {
-          if (res.returnCode === '200') {
-            this.list = res.data.items
-          }
-        })
+        recommendActivity(this.offset, this.limit).then(res => {
+	        if (res.returnCode === '200') {
+	          this.list = res.data
+	        }
+      	})
       },
       methods: {
         queryActivity() {

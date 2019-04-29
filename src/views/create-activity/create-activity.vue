@@ -16,8 +16,13 @@
     </div>
     <div class="list">
       <div @click="startShow = true" class="item start">
-        <van-icon name="clock"></van-icon>活动时间
+        <van-icon name="clock"></van-icon>活动开始时间
         <div class="start-time">{{params.activityTime | formatCustomDate('-')}}</div>
+        <img class="icon" src="../../assets/img/more.png">
+      </div>
+      <div @click="activeEndShow = true" class="item start">
+        <van-icon name="clock"></van-icon>活动结束时间
+        <div class="start-time">{{params.endTime | formatCustomDate('-')}}</div>
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div @click="endShow = true" class="item end">
@@ -31,8 +36,8 @@
         <img class="icon" src="../../assets/img/more.png">
       </div>
       <div class="item money">
-        费用金额
-        <input class="input" placeholder="请输入费用金额" type="number" v-model="params.cost">
+        	活动预算
+        <input class="input" placeholder="请输入活动预算" type="number" v-model="params.cost">
         <div class="yun">元</div>
       </div>
       <div class="test">
@@ -49,6 +54,12 @@
         活动类型：
         <span style="color: #212121;" v-if="selectValue">{{selectValue}}</span>
         <span v-else>请选择活动类型</span>
+        <img class="icon-bottom" src="./img/more_bottom.png">
+      </div>
+      <div @click="selectShowGas = true" class="item select">
+        资金来源：
+        <span style="color: #212121;" v-if="selectValueGas">{{selectValueGas}}</span>
+        <span v-else>请选择资金来源</span>
         <img class="icon-bottom" src="./img/more_bottom.png">
       </div>
       <div class="describe">
@@ -70,18 +81,33 @@
         @cancel="cancel"
         @confirm="confirmStart"
         title="活动开始日期"
-        type="date"
+        type="datetime"
         v-model="startDate"
+      />
+    </van-popup>
+    <van-popup
+      :close-on-click-overlay="false"
+      :overlay="true"
+      position="bottom"
+      v-model="activeEndShow"
+    >
+      <van-datetime-picker
+        :min-date="startDate"
+        @cancel="cancel"
+        @confirm="confirmActiveEnd"
+        title="活动结束日期"
+        type="datetime"
+        v-model="activeEndDate"
       />
     </van-popup>
     <van-popup :close-on-click-overlay="false" :overlay="true" position="bottom" v-model="endShow">
       <van-datetime-picker
-        :max-date="maxEndDate"
+        :max-date="startDate"
         :min-date="minStartDate"
         @cancel="cancel"
         @confirm="confirmEnd"
         title="报名截止日期"
-        type="date"
+        type="datetime"
         v-model="endDate"
       />
     </van-popup>
@@ -99,6 +125,13 @@
         show-toolbar
         title="选择活动类型"
       />
+    </van-popup>
+    
+    <van-popup position="bottom" v-model="selectShowGas">
+      <van-picker :columns="gasFrom"
+                  @confirm="gasFromFn"
+                  @cancel="cancel"
+                  show-toolbar title="选择资金来源"/>
     </van-popup>
   </div>
 </template>
@@ -118,18 +151,33 @@ export default {
       startShow: false,
       endShow: false,
       endDate: new Date(),
+      activeEndShow: false,
+      activeEndDate: new Date(),
       selectShow: false,
+      selectShowGas: false,
       selectValue: '',
       activityClass: {
         '党建': [],
         '社区': [],
         '通知': []
       },
+      gasFrom: [{
+      	text: '自筹资金',
+      	id: 1
+      }, {
+      	text: '政府资金',
+      	id: 2
+      }, {
+      	text: 'AA资金',
+      	id: 3
+      }],
+      selectValueGas: '',
       columns: [],
       params: {
         title: '',
         mainImg: '',
         activityTime: new Date().getTime(),
+        endTime: new Date().getTime(),
         signEndTime: new Date().getTime(),
         dutyName: '',
         dutyPhone: '',
@@ -187,9 +235,16 @@ export default {
     onChange(picker, values) {
       picker.setColumnValues(1, this.activityClass[values[0]])
     },
+    onChangeFn(picker, values) {
+      picker.setColumnValues(1, this.activityClass[values[0]])
+    },
     confirmStart() {
       this.params.activityTime = this.startDate.getTime()
       this.startShow = false
+    },
+    confirmActiveEnd() {
+    	this.params.endTime = this.activeEndDate.getTime()
+      this.activeEndShow = false
     },
     confirmEnd() {
       this.params.signEndTime = this.endDate.getTime()
@@ -199,6 +254,7 @@ export default {
       this.startShow = false
       this.endShow = false
       this.selectShow = false
+      this.selectShowGas = false
     },
     selectConfirm(value) {
       console.log(value)
@@ -210,6 +266,11 @@ export default {
       this.params.activityType = value[1].id
       this.selectValue = value[1].text
       this.selectShow = false
+    },
+    gasFromFn(value) {
+    	this.params.gasFrom = value.id
+    	this.selectValueGas = value.text
+    	this.selectShowGas = false
     },
     changeImg(e) {
       var file = e.target.files[0]

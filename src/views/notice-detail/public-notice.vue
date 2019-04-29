@@ -8,7 +8,7 @@
             {{item.title}}
           </div>
           <div class="time">
-            {{item.downTime | formatCustomDateTime('-')}}
+            {{item.downTime * 1000 | formatCustomDateTime('-')}}
           </div>
         </div>
       </div>
