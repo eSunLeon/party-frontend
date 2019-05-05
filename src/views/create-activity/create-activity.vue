@@ -331,7 +331,7 @@ export default {
       createActivity(this.params).then(res => {
         if (res.returnCode === '200') {
           this.$toast.success({
-            message: '创建成功!',
+            message: '创建成功!!',
             duration: 1500
           })
           this.selectValue = null
